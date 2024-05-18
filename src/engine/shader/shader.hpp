@@ -10,7 +10,10 @@
 #include "../../../include/glew/include/GL/glew.h"
 #include "../../../include/glfw/include/GLFW/glfw3.h"
 
-namespace kt
+#include "../../../include/glm/glm/glm.hpp"
+#include "../../../include/glm/glm/gtc/type_ptr.hpp"
+
+namespace sm
 {
     class shader 
     {
@@ -24,6 +27,8 @@ namespace kt
             void detach();
 
             uint8_t send_float(float val, std::string varName);
+            void send_mat4(glm::mat4 mat, std::string name);
+
             void free();
         private:
             uint32_t m_id;
@@ -33,6 +38,7 @@ namespace kt
             uint8_t m_being_used;
             uint8_t m_was_freed;
             uint8_t m_was_initialized;
+
     };
 }
 

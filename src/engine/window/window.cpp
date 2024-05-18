@@ -1,6 +1,6 @@
 #include "window.hpp"
 
-namespace kt
+namespace sm
 {
     window::window(std::string title, uint16_t width, uint16_t height, utilz::rgba_color color)
         : m_width(width), m_height(height), m_title(title), m_color(color)
@@ -43,7 +43,7 @@ namespace kt
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        glfwSwapInterval(0);
+        glfwSwapInterval(1);
 
         // Set callbacks
         glfwSetKeyCallback(m_context, input::key_callback);

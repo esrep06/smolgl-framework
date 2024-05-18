@@ -1,6 +1,6 @@
 #include "time.hpp"
 
-namespace kt
+namespace sm
 {
     double time::delta_time()
     { return m_delta_time; }

@@ -11,7 +11,7 @@
 #include "../../../include/cpp-utilz/color/color.hpp"
 #include "../../../include/cpp-utilz/logger/logger.hpp"
 
-namespace kt
+namespace sm
 {
     class window 
     {

@@ -3,7 +3,7 @@
 #define GLFW_INCLUDE_NONE
 #include "../../../../include/glfw/include/GLFW/glfw3.h"
 
-namespace kt
+namespace sm
 {
     class time 
     {

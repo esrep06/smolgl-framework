@@ -6,7 +6,7 @@
 #define INCLUDE_GLFW_NONE
 #include "../../../include/glfw/include/GLFW/glfw3.h"
 
-namespace kt
+namespace sm
 {
     class input
     {

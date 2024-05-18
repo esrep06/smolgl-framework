@@ -1,6 +1,6 @@
 UNAME_S:=$(shell uname -s)
 CC=g++
-CFLAGS=-std=c++14 
+CFLAGS=-std=c++20 
 INCLUDE_DIR=include
 GLFW_LIB_DIR=$(INCLUDE_DIR)/glfw/build/src/
 GLEW_LIB_DIR=$(INCLUDE_DIR)/glew/lib/

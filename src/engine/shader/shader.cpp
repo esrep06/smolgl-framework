@@ -1,19 +1,19 @@
 #include "shader.hpp"
 
-namespace kt
+namespace sm
 {
 	shader::shader(std::string vertex, std::string fragment)
 		: m_vertex_path(vertex), m_fragment_path(fragment)
-	{
-		std::getline(std::ifstream(m_vertex_path), m_vertex_string, '\0');
-		std::getline(std::ifstream(m_fragment_path), m_fragment_string, '\0');
-	}
+	{}
 
 	shader::shader()
 	{}
 
 	uint8_t shader::load_and_compile()
 	{
+		std::getline(std::ifstream(m_vertex_path), m_vertex_string, '\0');
+		std::getline(std::ifstream(m_fragment_path), m_fragment_string, '\0');
+
 		uint32_t vertexId, fragmentId;
 
 		vertexId = glCreateShader(GL_VERTEX_SHADER);
@@ -101,6 +101,11 @@ namespace kt
 
 		glUseProgram(m_id);
 		m_being_used = 1;
+	}
+
+	void shader::send_mat4(glm::mat4 mat, std::string name)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
 	}
 }
 
