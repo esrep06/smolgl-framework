@@ -13,7 +13,7 @@ namespace sm
     entity ecs::create_entity(component components)
     {
         // Check if we havent reached the max number of entities
-        if (m_entities.size() > ECS_MAX_ENTITIES) 
+        if (get_entity_num() > ECS_MAX_ENTITIES) 
         {
             utilz::logger::log("Entity max number reached!!\n", utilz::logger::ERROR);
             return ECS_MAX_ENTITIES;
@@ -57,20 +57,10 @@ namespace sm
     void* ecs::get_component(entity e, component c)
     {
         if (c & TRANSFORM)
-        {
-            if (m_transform_system.has_entity(e)) return &m_transform_system.get_entities()->at(e);
-
-            utilz::logger::log(std::format("Entity '{}' does not have a transform component!!!\n", e), utilz::logger::ERROR);
-            return nullptr;
-        }
+            return m_transform_system.get_component(e);
 
         if (c & SPRITE)
-        {
-            if (m_sprite_system.has_entity(e)) return &m_sprite_system.get_entities()->at(e);
-
-            utilz::logger::log(std::format("Entity '{}' does not have a sprite component!!!\n", e), utilz::logger::ERROR);
-            return nullptr;
-        }
+            return m_sprite_system.get_component(e);
         
         utilz::logger::log(std::format("Error retrieving component: entity '{}'\n", e), utilz::logger::ERROR);
 

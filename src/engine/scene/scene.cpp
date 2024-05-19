@@ -11,15 +11,31 @@ namespace sm
 
     void scene::init()
     {
-        //m_ecs.get_sprite_system()->initialize();
+        m_ecs.get_sprite_system()->initialize_all();
     }
 
     // Render all scene entities, update camera matrices 
     void scene::render()
     {
-        m_ecs.get_sprite_system()->draw();
-        m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("triangle_shader"));
+        m_default_shaders.retrieve_shader("triangle_shader")->use();
+
+        for (auto it = m_ecs.get_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_sprite_system()->get_entities()->end(); it++)
+        {
+            if (m_ecs.get_transform_system()->has_entity(it->first))
+                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("triangle_shader"), it->first);
+
+            if (!it->second.was_initialized)
+                m_ecs.get_sprite_system()->initialize(it->first);
+
+            m_ecs.get_sprite_system()->draw(it->first);
+        }
+
         m_camera.update();
+
+        m_default_shaders.retrieve_shader("triangle_shader")->send_mat4(m_camera.get_view(), "view");
+        m_default_shaders.retrieve_shader("triangle_shader")->send_mat4(m_camera.get_proj(), "projection");
+
+        m_default_shaders.retrieve_shader("triangle_shader")->detach();
     }
 
     camera* scene::get_camera()

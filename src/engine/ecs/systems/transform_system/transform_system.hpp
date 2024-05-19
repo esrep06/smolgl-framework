@@ -25,7 +25,9 @@ namespace sm
 
             void remove_entity(uint16_t e);
 
-            void update_transform(shader* shader);
+            void update_transform(shader* shader, uint16_t e);
+
+            transform* get_component(uint16_t e);
 
             uint8_t has_entity(uint16_t e);
 

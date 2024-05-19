@@ -3,7 +3,12 @@
 #include "../../../../include/cpp-utilz/math/vector2.hpp"
 #include "../../../../include/cpp-utilz/math/vector3.hpp"
 
+#include "../../../../include/glm/glm/glm.hpp"
+#include "../../../../include/glm/glm/gtc/matrix_transform.hpp"
+#include "../../../../include/glm/glm/gtc/type_ptr.hpp"
+
 #include "../../gl/gl_layer.hpp"
+#include "cpp-utilz/color/color.hpp"
 
 #define TRANSFORM 1
 #define SPRITE 2 
@@ -21,6 +26,7 @@ namespace sm
     struct sprite_vertex
     {
         utilz::vector3f position;
+        utilz::rgba_color color;
     };
 
     struct sprite
@@ -28,6 +34,8 @@ namespace sm
         gl_layer::vao vao;
         gl_layer::ebo ebo;
         gl_layer::vbo vbo;
+
+        utilz::rgba_color color;
 
         sprite_vertex vertices[4];
 

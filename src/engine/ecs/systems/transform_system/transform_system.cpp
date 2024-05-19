@@ -1,5 +1,7 @@
 #include "transform_system.hpp"
 #include "cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/math/vector2.hpp"
+#include "glm/glm/ext/matrix_transform.hpp"
 
 namespace sm
 {
@@ -28,18 +30,25 @@ namespace sm
         m_entities.erase(e);
     }
 
-    void transform_system::update_transform(shader* shader)
+    void transform_system::update_transform(shader* shader, uint16_t e)
     {
-        for (auto it = m_entities.begin(); it != m_entities.end(); it++)
-        {
-            glm::mat4 trans = glm::mat4(1.0f);
+        glm::mat4 trans;
+        transform* entity_t = get_component(e);
+        utilz::vector2f pos = entity_t->position;
+        utilz::vector2f scale = entity_t->scale;
 
-            trans = glm::translate(trans, glm::vec3(it->second.position.x, it->second.position.y, 0.0f));
-            trans = glm::scale(trans, glm::vec3(it->second.scale.x, it->second.scale.y, 1.0f));
+        trans = glm::mat4(1.0f);
 
-            shader->use();
-            shader->send_mat4(trans, "transform");
-        }
+        trans = glm::translate(trans, glm::vec3(pos.x, pos.y, 0.0f));
+        trans = glm::scale(trans, glm::vec3(scale.x, scale.y, 1.0f));
+
+        shader->send_mat4(trans, "transform");
+    }
+
+    transform* transform_system::get_component(uint16_t e)
+    {
+        if (has_entity(e)) return &m_entities.at(e); 
+        else utilz::logger::log(std::format("Entity '{}' does not have a transform component!\n", e), utilz::logger::ERROR); return nullptr;
     }
 
     uint8_t transform_system::has_entity(uint16_t e)

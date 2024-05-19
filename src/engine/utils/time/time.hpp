@@ -8,11 +8,11 @@ namespace sm
     class time 
     {
         public:
-            double delta_time();
-            double get_time();
-            void calculate_update();
+            static double delta_time();
+            static double get_time();
+            static void calculate_update();
         private:
-            double m_start_time, m_delta_time;
+            inline static double m_start_time, m_delta_time;
     };
 }
 
