@@ -26,7 +26,7 @@ namespace sm
             void use();
             void detach();
 
-            uint8_t send_float(float val, std::string varName);
+            void send_float(float val, std::string varName);
             void send_mat4(glm::mat4 mat, std::string name);
 
             void free();

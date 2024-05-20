@@ -22,6 +22,7 @@ namespace sm
             void generate();
             void bind();
             void detach();
+            void free();
         };
 
         struct vbo
@@ -34,6 +35,7 @@ namespace sm
             void bind();
             void detach();
             void send_data(GLsizeiptr size, const void* data, GLenum usage);
+            void free();
         };
 
         struct ebo 
@@ -46,6 +48,7 @@ namespace sm
             void bind();
             void detach();
             void send_data(GLsizeiptr size, const void* data, GLenum usage);
+            void free();
         };
         
         void enable_attrib_ptr(GLuint index, GLint size, GLenum type, GLsizei stride, const void* ptr);

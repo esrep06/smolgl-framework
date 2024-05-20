@@ -103,9 +103,18 @@ namespace sm
 		m_being_used = 1;
 	}
 
+	void shader::send_float(float val, std::string name)
+	{ 
+		use();
+		glUniform1f(glGetUniformLocation(m_id, name.c_str()), val);
+		detach();
+	}
+
 	void shader::send_mat4(glm::mat4 mat, std::string name)
-	{
-		glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+	{ 
+		use();
+		glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat)); 
+		detach();
 	}
 }
 

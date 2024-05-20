@@ -32,9 +32,12 @@ namespace sm
 
             transform_system* get_transform_system();
             sprite_system* get_sprite_system();
+
+            void clear_remove_queue();
         private:
             uint16_t m_entity_num;
             std::vector<entity> m_entities;
+            std::vector<entity> m_remove_queue;
 
             transform_system m_transform_system;
             sprite_system m_sprite_system;

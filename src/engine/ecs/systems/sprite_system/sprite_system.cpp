@@ -27,6 +27,12 @@ namespace sm
             return;
         }
 
+        sm::sprite* spr = get_component(e);
+
+        spr->ebo.free();
+        spr->vao.free();
+        spr->vbo.free();
+
         m_entities.erase(e);
     }
 
@@ -83,7 +89,10 @@ namespace sm
     void sprite_system::draw(uint16_t e)
     {
         sprite* spr = get_component(e);
+
         if (spr == nullptr) return;
+
+        if (spr->shader != nullptr) spr->shader->use();
 
         spr->vbo.bind();
         spr->vao.bind();
@@ -100,6 +109,8 @@ namespace sm
         spr->vbo.detach();
         spr->vao.detach();
         spr->ebo.detach();
+
+        if (spr->shader != nullptr) spr->shader->detach();
     }
 
     uint8_t sprite_system::has_entity(uint16_t e)

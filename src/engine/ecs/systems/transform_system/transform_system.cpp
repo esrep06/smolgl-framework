@@ -23,7 +23,7 @@ namespace sm
     {
         if (!has_entity(e)) 
         {
-            utilz::logger::log(std::format("Entity '{}' does not exist in transform system\n", e), utilz::logger::ERROR);
+            utilz::logger::log(std::format("Cant remove entity '{}' -> does not exist in transform system\n", e), utilz::logger::ERROR);
             return;
         }
 
@@ -48,7 +48,7 @@ namespace sm
     transform* transform_system::get_component(uint16_t e)
     {
         if (has_entity(e)) return &m_entities.at(e); 
-        else utilz::logger::log(std::format("Entity '{}' does not have a transform component!\n", e), utilz::logger::ERROR); return nullptr;
+        else utilz::logger::log(std::format("Cant get component of entity '{}' -> does not have a transform component!\n", e), utilz::logger::ERROR); return nullptr;
     }
 
     uint8_t transform_system::has_entity(uint16_t e)

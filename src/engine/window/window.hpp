@@ -10,6 +10,7 @@
 
 #include "../../../include/cpp-utilz/color/color.hpp"
 #include "../../../include/cpp-utilz/logger/logger.hpp"
+#include "../../../include/cpp-utilz/math/vector2.hpp"
 
 namespace sm
 {
@@ -23,6 +24,7 @@ namespace sm
 
             GLFWwindow* get_context();
             utilz::rgba_color get_color();
+            utilz::vector2 get_resolution();
         private:
             GLFWwindow* m_context;
 

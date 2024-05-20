@@ -9,6 +9,7 @@
 
 #include "../../gl/gl_layer.hpp"
 #include "cpp-utilz/color/color.hpp"
+#include "../../shader/shader.hpp"
 
 #define TRANSFORM 1
 #define SPRITE 2 
@@ -34,6 +35,8 @@ namespace sm
         gl_layer::vao vao;
         gl_layer::ebo ebo;
         gl_layer::vbo vbo;
+
+        shader* shader;
 
         utilz::rgba_color color;
 

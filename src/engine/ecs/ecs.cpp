@@ -2,6 +2,7 @@
 #include "components/components.hpp"
 #include "cpp-utilz/logger/logger.hpp"
 #include "systems/transform_system/transform_system.hpp"
+#include <cstddef>
 
 namespace sm
 {
@@ -32,6 +33,8 @@ namespace sm
 
         add_components(e, components);
 
+        utilz::logger::log("Created entity with: " + std::bitset<8>(components).to_string() + '\n');
+
         // Return 
         return e;
     }
@@ -47,11 +50,35 @@ namespace sm
             return;
         }
 
-        if (m_transform_system.has_entity(e))
-            m_transform_system.remove_entity(e);
+        // Send to our queue if it does  
+        m_remove_queue.push_back(e);
 
-        // Erase if it does 
-        m_entities.erase(it);
+        /* m_entities.erase(it); */
+    }
+
+    void ecs::clear_remove_queue()
+    {
+        for (entity e : m_remove_queue)
+        {
+            utilz::logger::log(std::format("Removed entity '{}'\n", e));
+
+            if (m_transform_system.has_entity(e))
+            {
+                utilz::logger::log("    Removing transform...\n");
+                m_transform_system.remove_entity(e);
+            }
+
+            if (m_sprite_system.has_entity(e))
+            {
+                m_sprite_system.remove_entity(e);
+                utilz::logger::log("    Removing sprite...\n");
+            }
+
+            auto it = std::find(m_entities.begin(), m_entities.end(), e);
+            m_entities.erase(it);
+        }
+
+        m_remove_queue.clear();
     }
 
     void* ecs::get_component(entity e, component c)
@@ -73,7 +100,13 @@ namespace sm
             m_transform_system.add_entity(e);
 
         if (components & SPRITE)
+        {
+            // We need a transform component if we are going to draw so we force adding it in case the user didnt add it 
             m_sprite_system.add_entity(e);
+
+            if (!m_transform_system.has_entity(e))
+                m_transform_system.add_entity(e);
+        }
     }
 
     uint32_t ecs::get_entity_num()

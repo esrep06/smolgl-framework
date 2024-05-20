@@ -24,6 +24,9 @@ namespace sm
         void vbo::send_data(GLsizeiptr size, const void* data, GLenum usage)
         { glBufferData(GL_ARRAY_BUFFER, size, data, usage); }
 
+        void vbo::free()
+        { glDeleteBuffers(1, &id); }
+
 
         // VAO 
 
@@ -41,6 +44,9 @@ namespace sm
 
         void vao::detach()
         { glBindVertexArray(0); }
+
+        void vao::free()
+        { glDeleteVertexArrays(1, &id); }
 
         // EBO
 
@@ -61,6 +67,10 @@ namespace sm
 
          void ebo::send_data(GLsizeiptr size, const void* data, GLenum usage)
         { glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage); }
+
+        void ebo::free()
+        { glDeleteBuffers(1, &id); }
+
 
         void enable_attrib_ptr(GLuint index, GLint size, GLenum type, GLsizei stride, const void* ptr)
         { glVertexAttribPointer(index, size, type, GL_FALSE, stride, ptr); }

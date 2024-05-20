@@ -2,40 +2,51 @@
 
 namespace sm
 {
-    scene::scene(camera cam)
-        : m_camera(cam), m_ecs(ecs())
-    {
-        m_default_shaders.add_shader(sm::shader("assets/triangle_vertex.glsl", "assets/triangle_fragment.glsl"), "triangle_shader");
-        m_default_shaders.initialize_shaders();
-    }
+    scene::scene(window* win, camera cam)
+        : m_window(win), m_camera(cam), m_ecs(ecs())
+    {}
 
     void scene::init()
     {
         m_ecs.get_sprite_system()->initialize_all();
+
+        m_default_shaders.add_shader(sm::shader("assets/default_vertex.glsl", "assets/default_fragment.glsl"), "default_shader");
+
+        /* m_default_shaders.initialize_shaders(); */
     }
 
-    // Render all scene entities, update camera matrices 
     void scene::render()
     {
-        m_default_shaders.retrieve_shader("triangle_shader")->use();
+        // Update camera matrices
+        m_camera.update();
+
+        // Send camera matrices to all shaders
+        sm::shader* default_shader = m_default_shaders.retrieve_shader("default_shader");
+        default_shader->send_mat4(m_camera.get_view(), "view");
+        default_shader->send_mat4(m_camera.get_proj(), "projection");
 
         for (auto it = m_ecs.get_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_sprite_system()->get_entities()->end(); it++)
         {
-            if (m_ecs.get_transform_system()->has_entity(it->first))
-                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("triangle_shader"), it->first);
+            for (auto shader = m_default_shaders.get_pool()->begin(); shader != m_default_shaders.get_pool()->end(); shader++)
+            {
+                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader(shader->first), it->first);
+            }
+
+            // Update entity transforms and send to matrices 
 
             if (!it->second.was_initialized)
                 m_ecs.get_sprite_system()->initialize(it->first);
 
+            if (m_ecs.get_sprite_system()->get_component(it->first)->shader == nullptr)
+                default_shader->use();
+
             m_ecs.get_sprite_system()->draw(it->first);
+
+            if (m_ecs.get_sprite_system()->get_component(it->first)->shader == nullptr)
+                default_shader->detach();
         }
 
-        m_camera.update();
-
-        m_default_shaders.retrieve_shader("triangle_shader")->send_mat4(m_camera.get_view(), "view");
-        m_default_shaders.retrieve_shader("triangle_shader")->send_mat4(m_camera.get_proj(), "projection");
-
-        m_default_shaders.retrieve_shader("triangle_shader")->detach();
+        m_ecs.clear_remove_queue();
     }
 
     camera* scene::get_camera()
@@ -46,5 +57,8 @@ namespace sm
 
     shader_pool* scene::get_shader_pool()
     { return &m_default_shaders; }
+
+    sm::window* scene::get_window()
+    { return m_window; }
 }
 

@@ -9,6 +9,8 @@ namespace sm
         if (m_pool.find(identifier) != m_pool.end()) return;
 
         m_pool.insert(std::pair<std::string, shader>(identifier, value));
+
+        m_pool.at(identifier).load_and_compile();
     }
 
     shader* shader_pool::retrieve_shader(std::string identifier)

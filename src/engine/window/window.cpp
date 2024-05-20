@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "cpp-utilz/math/vector2.hpp"
 
 namespace sm
 {
@@ -56,7 +57,7 @@ namespace sm
         const GLubyte* vendor = glGetString(GL_VENDOR); // Returns the vendor
         const GLubyte* renderer = glGetString(GL_RENDERER); // Returns a hint to the model
 
-        utilz::logger::log("Vendor: " + std::string(reinterpret_cast<const char*>(vendor)) + "\n    Renderer: " + std::string(reinterpret_cast<const char*>(renderer)) + "\n");
+        utilz::logger::log("Renderer Info:\n    Vendor: " + std::string(reinterpret_cast<const char*>(vendor)) + "\n    Renderer: " + std::string(reinterpret_cast<const char*>(renderer)) + "\n");
     }
 
     window::window()
@@ -76,4 +77,7 @@ namespace sm
 
     utilz::rgba_color window::get_color()
     { return m_color; }
+
+    utilz::vector2 window::get_resolution()
+    { return utilz::vector2(m_width, m_height); } 
 }
