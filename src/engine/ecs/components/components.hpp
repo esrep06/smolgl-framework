@@ -40,7 +40,7 @@ namespace sm
         gl_layer::ebo ebo;
         gl_layer::vbo vbo;
 
-        shader* shader;
+        sm::shader* shader;
 
         utilz::rgba_color color;
 
