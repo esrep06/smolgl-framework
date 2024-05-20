@@ -2,6 +2,7 @@
 #include "cpp-utilz/logger/logger.hpp"
 #include "cpp-utilz/math/vector2.hpp"
 #include "glm/glm/ext/matrix_transform.hpp"
+#include "glm/glm/trigonometric.hpp"
 
 namespace sm
 {
@@ -36,10 +37,12 @@ namespace sm
         transform* entity_t = get_component(e);
         utilz::vector2f pos = entity_t->position;
         utilz::vector2f scale = entity_t->scale;
+        glm::vec3 rotation_vec = glm::vec3(0.0f, 0.0f, entity_t->angle > 0 ? 1 : entity_t->angle < 0 ? -1 : 1);
 
         trans = glm::mat4(1.0f);
 
         trans = glm::translate(trans, glm::vec3(pos.x, pos.y, 0.0f));
+        trans = glm::rotate(trans, glm::radians(entity_t->angle), rotation_vec);
         trans = glm::scale(trans, glm::vec3(scale.x, scale.y, 1.0f));
 
         shader->send_mat4(trans, "transform");

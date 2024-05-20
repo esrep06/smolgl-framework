@@ -12,7 +12,10 @@
 #include "../../shader/shader.hpp"
 
 #define TRANSFORM 1
-#define SPRITE 2 
+#define SPRITE 2
+
+#define SPRITE_CONFIG_CENTERED 1
+#define SPRITE_CONFIG_TOP_LEFT 2
 
 namespace sm 
 {
@@ -22,6 +25,7 @@ namespace sm
     {
         utilz::vector2f position;
         utilz::vector2f scale;
+        float angle = 0.0f;
     };
     
     struct sprite_vertex
@@ -44,6 +48,7 @@ namespace sm
 
         uint32_t indices[6];
         uint8_t was_initialized;
+        uint8_t config;
     };
 }
 

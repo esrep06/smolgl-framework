@@ -44,10 +44,26 @@ namespace sm
         
         spr->was_initialized = 1;
 
-        spr->vertices[0].position = utilz::vector3f(0.0f, 0.0f, 1.0f);
-        spr->vertices[1].position = utilz::vector3f(1.0f, 0.0f, 1.0f);
-        spr->vertices[2].position = utilz::vector3f(0.0f, 1.0f, 1.0f);
-        spr->vertices[3].position = utilz::vector3f(1.0f, 1.0f, 1.0f);
+        // Top Left Origin
+
+        if (spr->config == 0 || spr->config & SPRITE_CONFIG_TOP_LEFT)
+        {
+            spr->vertices[0].position = utilz::vector3f(0.0f, 0.0f, 1.0f);
+            spr->vertices[1].position = utilz::vector3f(1.0f, 0.0f, 1.0f);
+            spr->vertices[2].position = utilz::vector3f(0.0f, 1.0f, 1.0f);
+            spr->vertices[3].position = utilz::vector3f(1.0f, 1.0f, 1.0f);
+        }
+
+        // Centered Origin
+
+        if (spr->config & SPRITE_CONFIG_CENTERED)
+        {
+            spr->vertices[0].position = utilz::vector3f(-0.5f, -0.5f, 1.0f);
+            spr->vertices[1].position = utilz::vector3f(0.5f, -0.5f, 1.0f);
+            spr->vertices[2].position = utilz::vector3f(-0.5f, 0.5f, 1.0f);
+            spr->vertices[3].position = utilz::vector3f(0.5f, 0.5f, 1.0f);
+        }
+
 
         spr->vertices[0].color = spr->color;
         spr->vertices[1].color = spr->color;
