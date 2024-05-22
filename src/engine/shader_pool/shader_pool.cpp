@@ -1,14 +1,15 @@
 #include "shader_pool.hpp"
+#include <functional>
 
 namespace sm
 {
     shader_pool::shader_pool() {}
 
-    void shader_pool::add_shader(shader value, std::string identifier)
+    void shader_pool::add_shader(std::string vertex, std::string fragment, std::string identifier)
     {
         if (m_pool.find(identifier) != m_pool.end()) return;
 
-        m_pool.insert(std::pair<std::string, shader>(identifier, value));
+        m_pool.insert(std::pair<std::string, shader>(identifier, shader(vertex, fragment)));
 
         m_pool.at(identifier).load_and_compile();
     }
@@ -32,12 +33,6 @@ namespace sm
     {
         if (m_pool.find(identifier) == m_pool.end()) return;
         m_pool.erase(identifier);
-    }
-
-    void shader_pool::delete_shaders()
-    {
-        for (auto t = m_pool.begin(); t !=  m_pool.end(); t++)
-        { t->second.free(); }
     }
 
     std::map<std::string, shader>* shader_pool::get_pool()

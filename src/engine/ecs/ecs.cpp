@@ -74,6 +74,12 @@ namespace sm
                 utilz::logger::log("    Removing sprite...\n");
             }
 
+            if (m_textured_sprite_system.has_entity(e))
+            {       
+                m_textured_sprite_system.remove_entity(e);
+                utilz::logger::log("    Removing textured sprite...\n");
+            }
+
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
             m_entities.erase(it);
         }
@@ -88,6 +94,9 @@ namespace sm
 
         if (c & SPRITE)
             return m_sprite_system.get_component(e);
+        
+        if (c & TEXTURED_SPRITE)
+            return m_textured_sprite_system.get_component(e);
         
         utilz::logger::log(std::format("Error retrieving component: entity '{}'\n", e), utilz::logger::ERROR);
 
@@ -107,6 +116,24 @@ namespace sm
             if (!m_transform_system.has_entity(e))
                 m_transform_system.add_entity(e);
         }
+        
+        if (components & TEXTURED_SPRITE)
+        {
+            m_textured_sprite_system.add_entity(e);
+
+            if (!m_transform_system.has_entity(e))
+                m_transform_system.add_entity(e);
+        }
+    }
+
+    void ecs::free()
+    {
+        utilz::logger::log("Freeing all entity memory!\n");
+
+        for (uint16_t i = 0; i < m_entities.size(); i++)
+            remove_entity(i);
+
+        clear_remove_queue();
     }
 
     uint32_t ecs::get_entity_num()
@@ -120,5 +147,8 @@ namespace sm
 
     sprite_system* ecs::get_sprite_system()
     { return &m_sprite_system; }
+
+    textured_sprite_system* ecs::get_textured_sprite_system()
+    { return &m_textured_sprite_system; }
 }
 

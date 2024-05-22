@@ -19,6 +19,12 @@ namespace sm
         m_view = glm::lookAt(pos, pos + front, up); 
     }
 
+    void camera::send_matrices(shader* shader, std::string p_name, std::string v_name)
+    {
+        shader->send_mat4(get_view(), v_name.c_str());
+        shader->send_mat4(get_proj(), p_name.c_str());
+    }
+
     glm::mat4 camera::get_view()
     { return m_view; }
 

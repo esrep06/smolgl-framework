@@ -20,6 +20,7 @@ namespace sm
         public: 
             shader(std::string vertex, std::string fragment);
             shader();
+            ~shader();
 
             uint8_t load_and_compile();
 
@@ -37,7 +38,7 @@ namespace sm
 
             uint8_t m_being_used;
             uint8_t m_was_freed;
-            uint8_t m_was_initialized;
+            uint8_t m_was_initialized = 0;
 
     };
 }

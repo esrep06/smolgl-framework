@@ -1,8 +1,6 @@
 #include "cpp-utilz/color/color.hpp"
-#include "cpp-utilz/logger/logger.hpp"
 #include "cpp-utilz/math/vector2.hpp"
 #include "engine/ecs/components/components.hpp"
-#include "engine/ecs/systems/transform_system/transform_system.hpp"
 #include "engine/input/input.hpp"
 #include "engine/window/window.hpp"
 #include "engine/utils/time/time.hpp"
@@ -33,15 +31,15 @@ struct player
 player create_player(sm::scene* scene)
 {
     player p;
-    p.id = scene->get_ecs()->create_entity(SPRITE);
+    p.id = scene->get_ecs()->create_entity(TEXTURED_SPRITE | TRANSFORM);
     sm::transform* t = (sm::transform*)scene->get_ecs()->get_component(p.id, TRANSFORM);
-    sm::sprite* spr = (sm::sprite*)scene->get_ecs()->get_component(p.id, SPRITE);
+    sm::textured_sprite* spr = (sm::textured_sprite*)scene->get_ecs()->get_component(p.id, TEXTURED_SPRITE);
+    spr->shader = scene->get_shader_pool()->retrieve_shader("default_textured_shader");
     t->position.x = scene->get_window()->get_resolution().x * 0.5f;
     t->position.y = scene->get_window()->get_resolution().y * 0.5f;
-    t->scale.x = 32.0f;
-    t->scale.y = 64.0f;
-    spr->color = utilz::rgba_color(RGBA_BLACK);
-    spr->shader = scene->get_shader_pool()->retrieve_shader("default_shader");
+    t->scale.x = 64.0f;
+    t->scale.y = 128.0f;
+    spr->texture = scene->get_texture_pool()->retrieve_texture("player_boat");
     spr->config |= SPRITE_CONFIG_CENTERED;
 
     return p;
@@ -74,9 +72,10 @@ int main(void)
     sm::window win = sm::window("Hello OpenGL", 800, 600, 
             utilz::rgba_color(RGBA_WHITE));
 
-    sm::scene scene = sm::scene(&win, sm::camera(utilz::vector2f(0.0f), utilz::vector2(800, 600)));
+    sm::scene scene = sm::scene(&win, sm::camera(utilz::vector2f(0.0f), utilz::vector2(win.get_resolution().x, win.get_resolution().y)));
 
-    scene.get_shader_pool()->add_shader(sm::shader("assets/triangle_vertex.glsl", "assets/triangle_fragment.glsl"), "water_shader");
+    scene.get_shader_pool()->add_shader("assets/game_shaders/water_vertex.glsl", "assets/game_shaders/water_fragment.glsl", "water_shader");
+    scene.get_texture_pool()->add_texture("assets/textures/player_boat.png", "player_boat");
 
     scene.init();
 
@@ -89,7 +88,11 @@ int main(void)
 
         glfwPollEvents();
 
-        if (sm::input::get_key_down(GLFW_KEY_ESCAPE)) { break; }
+        if (sm::input::get_key_down(GLFW_KEY_ESCAPE)) 
+        {
+            utilz::logger::log("Closing...\n");
+            break; 
+        }
 
         move_player(&p, &scene);
 
@@ -100,7 +103,10 @@ int main(void)
         water_shader->send_float(win.get_resolution().x, "width");
         water_shader->send_float(win.get_resolution().y, "height");
         water_shader->send_float((float)sm::time::get_time(), "time");
- 
+        sm::transform* tr = (sm::transform*)scene.get_ecs()->get_component(p.id, TRANSFORM);
+        water_shader->send_float(tr->position.x, "pos_x");
+        water_shader->send_float(tr->position.y, "pos_y");
+        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(RGBA_NORMALIZED_FLOAT(win.get_color()));
 

@@ -1,9 +1,13 @@
 #pragma once
 
+#include <string>
+
 #include "../../../include/glm/glm/glm.hpp"
 #include "../../../include/glm/glm/gtc/matrix_transform.hpp"
 #include "../../../include/glm/glm/gtc/type_ptr.hpp"
 #include "../../../include/cpp-utilz/math/vector2.hpp"
+
+#include "../shader/shader.hpp"
 
 namespace sm 
 {
@@ -19,6 +23,8 @@ namespace sm
 
             utilz::vector2f pos;
             utilz::vector2 bounds;
+
+            void send_matrices(shader* shader, std::string p_name, std::string v_name);
         private:
             glm::mat4 m_view, m_proj;
     };

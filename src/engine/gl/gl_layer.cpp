@@ -7,10 +7,7 @@ namespace sm
         // VBO
 
         vbo::vbo()
-        {
-            generate();
-            bind();
-        }
+        {}
 
         void vbo::generate()
         { glGenBuffers(1, &id); }
@@ -31,10 +28,7 @@ namespace sm
         // VAO 
 
         vao::vao()
-        { 
-            generate();
-            bind();
-        }
+        { }
 
         void vao::generate()
         { glGenVertexArrays(1, &id); }
@@ -50,11 +44,8 @@ namespace sm
 
         // EBO
 
-        ebo::ebo()
-        {
-            generate();
-            bind();
-        }
+        ebo::ebo() 
+        {}
 
         void ebo::generate()
         { glGenBuffers(1, &id); }
@@ -70,7 +61,6 @@ namespace sm
 
         void ebo::free()
         { glDeleteBuffers(1, &id); }
-
 
         void enable_attrib_ptr(GLuint index, GLint size, GLenum type, GLsizei stride, const void* ptr)
         { glVertexAttribPointer(index, size, type, GL_FALSE, stride, ptr); }

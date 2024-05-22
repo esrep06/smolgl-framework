@@ -6,6 +6,7 @@
 #pragma once 
 
 #include <inttypes.h>
+#include <iostream>
 
 #include "../../../include/glew/include/GL/glew.h"
 

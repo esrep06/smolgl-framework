@@ -1,12 +1,14 @@
 #pragma once 
 
-#include <inttypes.h>
 #include <vector>
+#include <bitset>
+
+#include "../../../include/cpp-utilz/logger/logger.hpp"
 
 #include "components/components.hpp"
-#include "../../../include/cpp-utilz/logger/logger.hpp"
 #include "systems/transform_system/transform_system.hpp"
 #include "systems/sprite_system/sprite_system.hpp"
+#include "systems/textured_sprite_system/textured_sprite_system.hpp"
 
 #define ECS_MAX_ENTITIES 10000
 
@@ -32,8 +34,11 @@ namespace sm
 
             transform_system* get_transform_system();
             sprite_system* get_sprite_system();
+            textured_sprite_system* get_textured_sprite_system();
 
             void clear_remove_queue();
+
+            void free();
         private:
             uint16_t m_entity_num;
             std::vector<entity> m_entities;
@@ -41,6 +46,7 @@ namespace sm
 
             transform_system m_transform_system;
             sprite_system m_sprite_system;
+            textured_sprite_system m_textured_sprite_system;
     };
 }
 

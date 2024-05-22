@@ -14,6 +14,8 @@ namespace sm
 		std::getline(std::ifstream(m_vertex_path), m_vertex_string, '\0');
 		std::getline(std::ifstream(m_fragment_path), m_fragment_string, '\0');
 
+		utilz::logger::log("Compiling shader: " + m_vertex_path + " & " + m_fragment_path + "...\n");
+
 		uint32_t vertexId, fragmentId;
 
 		vertexId = glCreateShader(GL_VERTEX_SHADER);
@@ -80,7 +82,9 @@ namespace sm
 
 	void shader::free()
 	{
-		utilz::logger::log("Freeing shader memory\n");
+		if (!m_was_initialized) return;
+
+		utilz::logger::log("Freeing shader '" + m_vertex_path + "' memory\n");
 
 		glDeleteProgram(m_id);
 
@@ -115,6 +119,11 @@ namespace sm
 		use();
 		glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat)); 
 		detach();
+	}
+
+	shader::~shader()
+	{
+		free();
 	}
 }
 

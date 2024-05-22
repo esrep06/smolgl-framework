@@ -10,7 +10,8 @@ namespace sm
     {
         m_ecs.get_sprite_system()->initialize_all();
 
-        m_default_shaders.add_shader(sm::shader("assets/default_vertex.glsl", "assets/default_fragment.glsl"), "default_shader");
+        m_default_shaders.add_shader("assets/default_vertex.glsl", "assets/default_fragment.glsl", "default_shader");
+        m_default_shaders.add_shader("assets/default_textured_vertex.glsl", "assets/default_textured_fragment.glsl", "default_textured_shader");
 
         /* m_default_shaders.initialize_shaders(); */
     }
@@ -22,18 +23,24 @@ namespace sm
 
         // Send camera matrices to all shaders
         sm::shader* default_shader = m_default_shaders.retrieve_shader("default_shader");
-        default_shader->send_mat4(m_camera.get_view(), "view");
-        default_shader->send_mat4(m_camera.get_proj(), "projection");
+        sm::shader* default_texture_shader = m_default_shaders.retrieve_shader("default_textured_shader");
+
+        // Send camera matrices to shaders 
+        m_camera.send_matrices(default_shader, "projection", "view");
+        m_camera.send_matrices(default_texture_shader, "projection", "view");
 
         for (auto it = m_ecs.get_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_sprite_system()->get_entities()->end(); it++)
         {
-            for (auto shader = m_default_shaders.get_pool()->begin(); shader != m_default_shaders.get_pool()->end(); shader++)
+            // Update entity transforms and send to shaders
+            if (it->second.shader != nullptr)
+                m_ecs.get_transform_system()->update_transform(it->second.shader, it->first);
+            else 
             {
-                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader(shader->first), it->first);
+                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("default_shader"), it->first);
+                it->second.shader = m_default_shaders.retrieve_shader("default_shader");
             }
 
-            // Update entity transforms and send to matrices 
-
+            // Initialize if it hasnt 
             if (!it->second.was_initialized)
                 m_ecs.get_sprite_system()->initialize(it->first);
 
@@ -46,7 +53,37 @@ namespace sm
                 default_shader->detach();
         }
 
+        for (auto it = m_ecs.get_textured_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_textured_sprite_system()->get_entities()->end(); it++)
+        {
+            // Update entity transforms and send to shaders
+            if (it->second.shader != nullptr)
+                m_ecs.get_transform_system()->update_transform(it->second.shader, it->first);
+            else 
+            {
+                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("default_textured_shader"), it->first);
+                it->second.shader = m_default_shaders.retrieve_shader("default_textured_shader");
+            }
+
+            // Initialize if it hasnt 
+            if (!it->second.was_initialized)
+                m_ecs.get_textured_sprite_system()->initialize(it->first);
+
+            if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
+                default_texture_shader->use();
+
+            m_ecs.get_textured_sprite_system()->draw(it->first);
+
+            if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
+                default_texture_shader->detach();
+        }
+
         m_ecs.clear_remove_queue();
+    }
+
+    scene::~scene()
+    {
+        /* m_ecs.free(); */
+        /* m_textures.delete_textures(); */
     }
 
     camera* scene::get_camera()
@@ -57,6 +94,9 @@ namespace sm
 
     shader_pool* scene::get_shader_pool()
     { return &m_default_shaders; }
+
+    texture_pool* scene::get_texture_pool()
+    { return &m_textures; }
 
     sm::window* scene::get_window()
     { return m_window; }
