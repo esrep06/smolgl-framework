@@ -40,7 +40,6 @@ namespace sm
 
             void free();
         private:
-            uint16_t m_entity_num;
             std::vector<entity> m_entities;
             std::vector<entity> m_remove_queue;
 

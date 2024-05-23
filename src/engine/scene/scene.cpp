@@ -3,7 +3,7 @@
 namespace sm
 {
     scene::scene(window* win, camera cam)
-        : m_window(win), m_camera(cam), m_ecs(ecs())
+        : m_camera(cam), m_ecs(ecs()), m_window(win)
     {}
 
     void scene::init()
@@ -12,8 +12,6 @@ namespace sm
 
         m_default_shaders.add_shader("assets/default_vertex.glsl", "assets/default_fragment.glsl", "default_shader");
         m_default_shaders.add_shader("assets/default_textured_vertex.glsl", "assets/default_textured_fragment.glsl", "default_textured_shader");
-
-        /* m_default_shaders.initialize_shaders(); */
     }
 
     void scene::render()

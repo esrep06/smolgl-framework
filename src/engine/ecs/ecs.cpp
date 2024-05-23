@@ -8,7 +8,6 @@ namespace sm
 {
     
     ecs::ecs()
-        : m_entity_num(0)
     {}
 
     entity ecs::create_entity(component components)
@@ -20,13 +19,8 @@ namespace sm
             return ECS_MAX_ENTITIES;
         };
 
-        // Find an empty slot
-        auto it = std::find(m_entities.begin(), m_entities.end(), 0);
-
-        uint32_t index = it - m_entities.begin();
-
         // Entity id's start at 1 
-        entity e = index + 1;
+        entity e = (m_entities.size() + 1);
 
         // Push entity to stack
         m_entities.push_back(e);
@@ -52,14 +46,14 @@ namespace sm
 
         // Send to our queue if it does  
         m_remove_queue.push_back(e);
-
-        /* m_entities.erase(it); */
     }
 
     void ecs::clear_remove_queue()
     {
-        for (entity e : m_remove_queue)
+        for (int i = m_remove_queue.size() - 1; i >= 0; i--)
         {
+            entity e = m_remove_queue[i];
+
             utilz::logger::log(std::format("Removed entity '{}'\n", e));
 
             if (m_transform_system.has_entity(e))
@@ -70,20 +64,20 @@ namespace sm
 
             if (m_sprite_system.has_entity(e))
             {
-                m_sprite_system.remove_entity(e);
                 utilz::logger::log("    Removing sprite...\n");
+                m_sprite_system.remove_entity(e);
             }
 
             if (m_textured_sprite_system.has_entity(e))
             {       
-                m_textured_sprite_system.remove_entity(e);
                 utilz::logger::log("    Removing textured sprite...\n");
+                m_textured_sprite_system.remove_entity(e);
             }
 
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
             m_entities.erase(it);
         }
-
+        
         m_remove_queue.clear();
     }
 

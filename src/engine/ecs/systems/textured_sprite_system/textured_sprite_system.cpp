@@ -142,8 +142,12 @@ namespace sm
 
     textured_sprite* textured_sprite_system::get_component(uint16_t e)
     {
-        if (has_entity(e)) return &m_entities.at(e); 
-        else utilz::logger::log(std::format("Entity '{}' does not have a textured sprite component!\n", e), utilz::logger::ERROR); return nullptr;
+        if (has_entity(e)) \
+            return &m_entities.at(e); 
+        else 
+            utilz::logger::log(std::format("Entity '{}' does not have a textured sprite component!\n", e), utilz::logger::ERROR); 
+
+        return nullptr;
     }
 
     std::map<uint16_t, textured_sprite>* textured_sprite_system::get_entities()

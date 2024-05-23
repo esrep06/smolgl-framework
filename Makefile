@@ -8,7 +8,7 @@ BUILD_DIR=build
 LDFLAGS=-O0 -Wall -Wextra -pedantic -lpthread -ldl -lm $(GLEW_LIB_DIR)libGLEW.a $(GLFW_LIB_DIR)libglfw3.a
 
 #List of directories containing source files
-SRC_DIRS=src/engine
+SRC_DIRS=src/
 
 # Create a list of source files in each directory
 SRC+=src/main.cpp

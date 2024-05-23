@@ -121,6 +121,13 @@ namespace sm
 		detach();
 	}
 
+	void shader::send_int(int32_t val, std::string name)
+	{
+		use();
+		glUniform1i(glGetUniformLocation(m_id, name.c_str()), val);
+		detach();
+	}
+
 	shader::~shader()
 	{
 		free();

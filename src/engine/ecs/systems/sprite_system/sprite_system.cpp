@@ -64,7 +64,6 @@ namespace sm
             spr->vertices[3].position = utilz::vector3f(0.5f, 0.5f, 1.0f);
         }
 
-
         spr->vertices[0].color = spr->color;
         spr->vertices[1].color = spr->color;
         spr->vertices[2].color = spr->color;
@@ -142,8 +141,12 @@ namespace sm
 
     sprite*  sprite_system::get_component(uint16_t e)
     {
-        if (has_entity(e)) return &m_entities.at(e); 
-        else utilz::logger::log(std::format("Entity '{}' does not have a sprite component!\n", e), utilz::logger::ERROR); return nullptr;
+        if (has_entity(e))
+            return &m_entities.at(e); 
+        else
+            utilz::logger::log(std::format("Entity '{}' does not have a sprite component!\n", e), utilz::logger::ERROR); 
+
+        return nullptr;
     }
 
     std::map<uint16_t, sprite>* sprite_system::get_entities()
