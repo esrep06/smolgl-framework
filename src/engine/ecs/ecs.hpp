@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <vector>
+#include <queue>
 #include <bitset>
 
 #include "../../../include/cpp-utilz/logger/logger.hpp"
@@ -42,6 +43,7 @@ namespace sm
         private:
             std::vector<entity> m_entities;
             std::vector<entity> m_remove_queue;
+            std::queue<entity> m_available_entity_queue;
 
             transform_system m_transform_system;
             sprite_system m_sprite_system;

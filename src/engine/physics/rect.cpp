@@ -11,6 +11,9 @@ namespace sm
         scale = t.scale;
     }
 
+    rect::rect()
+    {}
+
     uint8_t rect::collision_aabb(rect target)
     {
         // Check for overlap along the x-axis

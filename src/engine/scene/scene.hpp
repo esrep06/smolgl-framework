@@ -19,6 +19,7 @@ namespace sm
 
             void init();
             void render();
+            void end_frame();
 
             camera* get_camera();
 

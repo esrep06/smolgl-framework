@@ -1,22 +1,14 @@
 #include "engine/scene/scene.hpp"
-#include "examples/snake/player/player.hpp"
-#include "examples/snake/food/food.hpp"
-
-// TODO: Rework entity component system
-
 
 int main(void)
 {
-    sm::window win = sm::window("Snake", 800, 600, 
+    sm::window win = sm::window("SM Framework", 800, 600, 
             utilz::rgba_color(100, 130, 180, 255));
 
     sm::scene scene = sm::scene(&win, sm::camera(utilz::vector2f(0.0f), 
                 utilz::vector2(win.get_resolution().x, win.get_resolution().y)));
 
     scene.init();
-
-    snake s;
-    s.create(&scene);
 
     while (!glfwWindowShouldClose(win.get_context()))
     {
@@ -34,8 +26,6 @@ int main(void)
         glClearColor(RGBA_NORMALIZED_FLOAT(win.get_color()));
 
         scene.render();
-
-        s.update();
 
         // End frame funcs
         sm::input::end_frame();

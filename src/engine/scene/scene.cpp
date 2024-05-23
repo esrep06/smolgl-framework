@@ -16,6 +16,8 @@ namespace sm
 
     void scene::render()
     {
+        m_ecs.clear_remove_queue();
+
         // Update camera matrices
         m_camera.update();
 
@@ -74,7 +76,10 @@ namespace sm
             if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
                 default_texture_shader->detach();
         }
+    }
 
+    void scene::end_frame()
+    {
         m_ecs.clear_remove_queue();
     }
 

@@ -8,7 +8,10 @@ namespace sm
 {
     
     ecs::ecs()
-    {}
+    {
+        for (int i = 0; i < ECS_MAX_ENTITIES; i++)
+            m_available_entity_queue.push(i);
+    }
 
     entity ecs::create_entity(component components)
     {
@@ -19,15 +22,16 @@ namespace sm
             return ECS_MAX_ENTITIES;
         };
 
-        // Entity id's start at 1 
-        entity e = (m_entities.size() + 1);
+        entity e = m_available_entity_queue.front();
 
-        // Push entity to stack
+        // Push entity to stackuu
         m_entities.push_back(e);
 
         add_components(e, components);
 
-        utilz::logger::log("Created entity with: " + std::bitset<8>(components).to_string() + '\n');
+        utilz::logger::log("Created entity '" + std::to_string(e) + "' with: " + std::bitset<8>(components).to_string() + '\n');
+
+        m_available_entity_queue.pop();
 
         // Return 
         return e;
@@ -75,7 +79,9 @@ namespace sm
             }
 
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
+           
             m_entities.erase(it);
+            m_available_entity_queue.push(e);
         }
         
         m_remove_queue.clear();
@@ -109,8 +115,8 @@ namespace sm
 
             if (!m_transform_system.has_entity(e))
                 m_transform_system.add_entity(e);
-        }
-        
+        } 
+
         if (components & TEXTURED_SPRITE)
         {
             m_textured_sprite_system.add_entity(e);
