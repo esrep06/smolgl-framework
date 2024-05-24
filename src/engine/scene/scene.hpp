@@ -18,6 +18,7 @@ namespace sm
             ~scene();
 
             void init();
+            void new_frame();
             void render();
             void end_frame();
 

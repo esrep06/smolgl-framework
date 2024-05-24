@@ -1,4 +1,6 @@
 #include "scene.hpp"
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
 
 namespace sm
 {
@@ -14,8 +16,17 @@ namespace sm
         m_default_shaders.add_shader("assets/default_textured_vertex.glsl", "assets/default_textured_fragment.glsl", "default_textured_shader");
     }
 
+    void scene::new_frame()
+    {
+        sm::time::calculate_update();
+        glfwPollEvents();
+        m_window->new_frame();
+    }
+
     void scene::render()
     {
+        m_window->clear(); 
+
         m_ecs.clear_remove_queue();
 
         // Update camera matrices
@@ -76,18 +87,19 @@ namespace sm
             if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
                 default_texture_shader->detach();
         }
+
     }
 
     void scene::end_frame()
     {
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        m_window->swap_buffers();
         m_ecs.clear_remove_queue();
+        sm::input::end_frame();
     }
 
     scene::~scene()
-    {
-        /* m_ecs.free(); */
-        /* m_textures.delete_textures(); */
-    }
+    {}
 
     camera* scene::get_camera()
     { return &m_camera; }

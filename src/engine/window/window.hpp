@@ -5,6 +5,9 @@
 
 #include "../../../include/glew/include/GL/glew.h"
 #include "../../../include/glfw/include/GLFW/glfw3.h"
+#include "../include/imgui/imgui.h"
+#include "../include/imgui/backends/imgui_impl_glfw.h"
+#include "../include/imgui/backends/imgui_impl_opengl3.h"
 
 #include "../input/input.hpp"
 
@@ -21,6 +24,10 @@ namespace sm
             window(std::string title, uint16_t width, uint16_t height, utilz::rgba_color color);
             window();
             ~window();
+
+            void new_frame();
+            void clear();
+            void swap_buffers();
 
             GLFWwindow* get_context();
             utilz::rgba_color get_color();
