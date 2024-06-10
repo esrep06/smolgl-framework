@@ -11,7 +11,6 @@ LDFLAGS=-O0 -Wall -Wextra -pedantic -lpthread -ldl -lm $(GLEW_LIB_DIR)libGLEW.a 
 SRC_DIRS=src/
 
 # Create a list of source files in each directory
-SRC+=src/main.cpp 
 SRC+=$(shell find $(SRC_DIRS) -type f -name '*.cpp')
 
 EXECUTABLE=$(BUILD_DIR)/app
