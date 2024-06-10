@@ -10,6 +10,3 @@
 [submodule "include/cpp-utilz"]
 	path = include/cpp-utilz
 	url = https://github.com/esrep06/cpp-utilz.git
-[submodule "include/imgui"]
-	path = include/imgui
-	url = https://github.com/ocornut/imgui.git
