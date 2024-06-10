@@ -1,12 +1,17 @@
 #include "input.hpp"
-#include "imgui.h"
+#include "glfw/include/GLFW/glfw3.h"
 
 namespace sm
 {
     void input::end_frame()
     {
         for (int i = 0; i < KEY_NUMBER; i++) m_keys_pressed[i] = 0;
-        for (int i = 0; i < MOUSE_BUTTON_NUMBER; i++) m_buttons_pressed[i] = 0;
+
+        for (int i = 0; i < MOUSE_BUTTON_NUMBER; i++) 
+        {
+            m_buttons_pressed[i] = 0;
+            m_buttons_released[i] = 0;
+        }
 
         m_input_stream = 0;
     }
@@ -20,17 +25,24 @@ namespace sm
             case GLFW_PRESS:
                 m_keys_pressed[key] = 1;
                 m_keys_held[key] = 1;
-                get_imgui_io().AddInputCharacter(key);
+
+                if (key == GLFW_KEY_ESCAPE) 
+                {
+                    utilz::logger::log("Closing...\n");
+                    glfwSetWindowShouldClose(window, true);
+                }
+
                 break;
             case GLFW_RELEASE:
                 m_keys_pressed[key] = 0;
                 m_keys_held[key] = 0;
         }
-
     }
 
     void input::text_stream_callback(GLFWwindow* window, uint32_t character)
-    { m_input_stream = character; }
+    { 
+        m_input_stream = character; 
+    }
 
     uint8_t input::get_key_down(uint32_t key)
     { return input::m_keys_pressed[key]; }
@@ -46,16 +58,22 @@ namespace sm
 
     void input::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
-        m_buttons_held[button] = action == GLFW_PRESS ? 1 : 0;
-        m_buttons_pressed[button] = action == GLFW_PRESS ? 1 : 0;
-
-        get_imgui_io().AddMouseButtonEvent(button, action);
+        switch(action)
+        {
+            case GLFW_PRESS:
+                m_buttons_held[button] = 1;
+                m_buttons_pressed[button] = 1;
+                break;
+            case GLFW_RELEASE:
+                m_buttons_held[button] = 0;
+                m_buttons_released[button] = 1;
+                break;
+        }
     }
 
     void input::mouse_position_callback(GLFWwindow* window, double xpos, double ypos)
     { 
         m_mouse_position = utilz::vector2f(xpos, ypos); 
-        get_imgui_io().AddMousePosEvent(xpos, ypos);
     } 
 
     uint8_t input::get_button_down(uint32_t button)
@@ -63,6 +81,9 @@ namespace sm
 
     uint8_t input::get_button(uint32_t button)
     { return m_buttons_held[button]; }
+
+    uint8_t input::get_button_up(uint32_t button)
+    { return m_buttons_released[button]; }
 
     void input::switch_cursor_state(CURSOR_STATE state, GLFWwindow* window)
     {
@@ -85,13 +106,11 @@ namespace sm
     utilz::vector2f input::get_mouse_position() 
     { return m_mouse_position; }
 
-    ImGuiIO input::get_imgui_io()
-    { return ImGui::GetIO(); }
-
     uint8_t input::m_keys_pressed[KEY_NUMBER];
     uint8_t input::m_keys_held[KEY_NUMBER];
     uint8_t input::m_buttons_pressed[MOUSE_BUTTON_NUMBER];
     uint8_t input::m_buttons_held[MOUSE_BUTTON_NUMBER];
+    uint8_t input::m_buttons_released[MOUSE_BUTTON_NUMBER];
     uint8_t input::m_input_stream;
     utilz::vector2f input::m_mouse_position;
 

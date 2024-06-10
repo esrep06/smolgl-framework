@@ -1,4 +1,5 @@
 #include "sprite_system.hpp"
+#include "cpp-utilz/color/color.hpp"
 #include "cpp-utilz/math/vector3.hpp"
 
 namespace sm 
@@ -135,6 +136,23 @@ namespace sm
 
         spr->shader->detach();
     }
+
+    void sprite_system::update_color(sprite* spr)
+    {
+        utilz::rgba_color v_color = utilz::rgba_color(spr->vertices[0].color.r, spr->vertices[0].color.g, spr->vertices[0].color.b, spr->vertices[0].color.a);
+
+        if (utilz::rgba_color::rgbacmp(v_color, spr->color)) return;
+
+        spr->vertices[0].color = spr->color;
+        spr->vertices[1].color = spr->color;
+        spr->vertices[2].color = spr->color;
+        spr->vertices[3].color = spr->color;
+
+        spr->vbo.bind();
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(sprite_vertex) * 4, spr->vertices);
+        spr->vbo.detach();
+    }
+
 
     uint8_t sprite_system::has_entity(uint16_t e)
     { return m_entities.find(e) != m_entities.end(); }

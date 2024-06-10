@@ -5,9 +5,6 @@
 
 #include "../../../include/glew/include/GL/glew.h"
 #include "../../../include/glfw/include/GLFW/glfw3.h"
-#include "../include/imgui/imgui.h"
-#include "../include/imgui/backends/imgui_impl_glfw.h"
-#include "../include/imgui/backends/imgui_impl_opengl3.h"
 
 #include "../input/input.hpp"
 
@@ -25,13 +22,15 @@ namespace sm
             window();
             ~window();
 
-            void new_frame();
             void clear();
             void swap_buffers();
 
             GLFWwindow* get_context();
             utilz::rgba_color get_color();
             utilz::vector2 get_resolution();
+            utilz::vector2f get_center();
+
+            void set_resolution(int32_t width, int32_t height);
         private:
             GLFWwindow* m_context;
 
@@ -40,6 +39,8 @@ namespace sm
             std::string m_title;
 
             utilz::rgba_color m_color;
+
+            static void window_size_callback(GLFWwindow* window, int width, int height);
     };
 }
 

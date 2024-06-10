@@ -13,7 +13,7 @@ namespace sm
         glm::vec3 pos = glm::vec3(this->pos.x, this->pos.y, 1.0f);
 
         m_proj = glm::mat4(1.0f);
-        m_proj = glm::ortho(0.0f, (float)bounds.x, (float)bounds.y, 0.0f, 0.0f, 100.0f);
+        m_proj = glm::ortho(0.0f, (float)bounds.x, (float)bounds.y, 0.0f, 0.0f, 1000.0f);
 
         m_view = glm::mat4(1.0f);
         m_view = glm::lookAt(pos, pos + front, up); 

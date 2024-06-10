@@ -9,6 +9,7 @@ namespace sm
     
     ecs::ecs()
     {
+        // Push all entity ids to the available queue
         for (int i = 0; i < ECS_MAX_ENTITIES; i++)
             m_available_entity_queue.push(i);
     }
@@ -22,6 +23,7 @@ namespace sm
             return ECS_MAX_ENTITIES;
         };
 
+        // Get first available entity
         entity e = m_available_entity_queue.front();
 
         // Push entity to stackuu
@@ -60,6 +62,8 @@ namespace sm
 
             utilz::logger::log(std::format("Removed entity '{}'\n", e));
 
+            // Get all components owned by the entity and apply the remove entity function
+
             if (m_transform_system.has_entity(e))
             {
                 utilz::logger::log("    Removing transform...\n");
@@ -78,12 +82,23 @@ namespace sm
                 m_textured_sprite_system.remove_entity(e);
             }
 
+            if (m_behavior_system.has_entity(e))
+            {
+                utilz::logger::log("    Removing behavior...\n");
+                m_behavior_system.remove_entity(e);
+            }   
+
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
-           
+          
+            // Erase the entity from the entity vector 
+
             m_entities.erase(it);
+
+            // Add entity id to available queue 
             m_available_entity_queue.push(e);
         }
         
+        // Clear queue of entities 
         m_remove_queue.clear();
     }
 
@@ -97,6 +112,9 @@ namespace sm
         
         if (c & TEXTURED_SPRITE)
             return m_textured_sprite_system.get_component(e);
+
+        if (c & BEHAVIOR)
+            return m_behavior_system.get_component(e);
         
         utilz::logger::log(std::format("Error retrieving component: entity '{}'\n", e), utilz::logger::ERROR);
 
@@ -124,6 +142,25 @@ namespace sm
             if (!m_transform_system.has_entity(e))
                 m_transform_system.add_entity(e);
         }
+
+        if (components & BEHAVIOR)
+            m_behavior_system.add_entity(e); 
+    }
+
+    uint8_t ecs::get_entity_components(entity e)
+    {
+        uint8_t components = 0;
+
+        if (m_transform_system.has_entity(e))
+            components |= TRANSFORM;
+        if (m_sprite_system.has_entity(e))
+            components |= SPRITE;
+        if (m_textured_sprite_system.has_entity(e))
+            components |= TEXTURED_SPRITE;
+        if (m_behavior_system.has_entity(e))
+            components |= BEHAVIOR;
+
+        return components;
     }
 
     void ecs::free()
@@ -150,5 +187,8 @@ namespace sm
 
     textured_sprite_system* ecs::get_textured_sprite_system()
     { return &m_textured_sprite_system; }
+
+    behavior_system* ecs::get_behavior_system()
+    { return &m_behavior_system; }
 }
 

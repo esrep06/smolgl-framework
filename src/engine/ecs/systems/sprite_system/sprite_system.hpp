@@ -3,6 +3,7 @@
 #include "../../components/components.hpp"
 #include "../../../../../include/glew/include/GL/glew.h"
 #include "../../../../../include/cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/color/color.hpp"
 
 #include <map>
 #include <format>
@@ -27,6 +28,8 @@ namespace sm
             void initialize(uint16_t e);
 
             uint8_t has_entity(uint16_t e);
+
+            static void update_color(sprite* spr);
         private:
             std::map<uint16_t, sprite> m_entities;
     };

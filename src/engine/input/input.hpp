@@ -6,9 +6,9 @@
 #include "../../../include/glfw/include/GLFW/glfw3.h"
 #include "../../../include/cpp-utilz/math/vector2.hpp"
 
-#include "../include/imgui/imgui.h"
-#include "../include/imgui/backends/imgui_impl_glfw.h"
-#include "../include/imgui/backends/imgui_impl_opengl3.h"
+#include "../include/cpp-utilz/logger/logger.hpp"
+
+#include <iostream>
 
 namespace sm
 {
@@ -42,13 +42,11 @@ namespace sm
 
             static uint8_t get_button_down(uint32_t button);
             static uint8_t get_button(uint32_t button);
+            static uint8_t get_button_up(uint32_t button);
             static utilz::vector2f get_mouse_position();
 
             static void switch_cursor_state(CURSOR_STATE state, GLFWwindow* window);
             static CURSOR_STATE get_cursor_state();
-
-            // ImGUI 
-            static ImGuiIO get_imgui_io();
         private:
             static uint8_t m_keys_pressed[KEY_NUMBER];
             static uint8_t m_keys_held[KEY_NUMBER];
@@ -56,6 +54,7 @@ namespace sm
 
             static uint8_t m_buttons_pressed[MOUSE_BUTTON_NUMBER];
             static uint8_t m_buttons_held[MOUSE_BUTTON_NUMBER];
+            static uint8_t m_buttons_released[MOUSE_BUTTON_NUMBER];
             static CURSOR_STATE m_cursor_state;
             static utilz::vector2f m_mouse_position;
     };

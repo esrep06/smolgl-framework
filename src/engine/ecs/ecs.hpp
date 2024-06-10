@@ -7,6 +7,7 @@
 #include "../../../include/cpp-utilz/logger/logger.hpp"
 
 #include "components/components.hpp"
+#include "systems/behavior_system/behavior_system.hpp"
 #include "systems/transform_system/transform_system.hpp"
 #include "systems/sprite_system/sprite_system.hpp"
 #include "systems/textured_sprite_system/textured_sprite_system.hpp"
@@ -32,10 +33,12 @@ namespace sm
 
             void* get_component(entity e, component c);
             void add_components(entity e, component components);
+            uint8_t get_entity_components(entity e);
 
             transform_system* get_transform_system();
             sprite_system* get_sprite_system();
             textured_sprite_system* get_textured_sprite_system();
+            behavior_system* get_behavior_system();
 
             void clear_remove_queue();
 
@@ -48,6 +51,7 @@ namespace sm
             transform_system m_transform_system;
             sprite_system m_sprite_system;
             textured_sprite_system m_textured_sprite_system;
+            behavior_system m_behavior_system;
     };
 }
 

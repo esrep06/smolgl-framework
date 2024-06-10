@@ -1,7 +1,6 @@
 #include "window.hpp"
 #include "cpp-utilz/math/vector2.hpp"
 #include "glfw/include/GLFW/glfw3.h"
-#include "imgui.h"
 
 namespace sm
 {
@@ -41,20 +40,6 @@ namespace sm
 
         glfwSwapInterval(1);
 
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO(); (void)io;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableSetMousePos;
-
-        // Setup Dear ImGui style
-        ImGui::StyleColorsDark();
-        //ImGui::StyleColorsLight();
-
-        // Setup Platform/Renderer backends
-        ImGui_ImplGlfw_InitForOpenGL(m_context, true);
-        ImGui_ImplOpenGL3_Init(glsl_version);
-   
         GLenum err = glewInit();
 
         if (err != GLEW_OK)
@@ -73,6 +58,10 @@ namespace sm
         glfwSetCursorPosCallback(m_context, input::mouse_position_callback);
         glfwSetMouseButtonCallback(m_context, input::mouse_button_callback);
 
+        glfwSetWindowUserPointer(m_context, this);
+
+        glfwSetWindowSizeCallback(m_context, window_size_callback);
+
         input::switch_cursor_state(input::CURSOR_ENABLED, m_context);
 
         utilz::logger::log("Window created successfully!\n", utilz::logger::SUCCESS);
@@ -86,16 +75,8 @@ namespace sm
     window::window()
     { }
 
-    void window::new_frame()
-    {
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-    }
-
     void window::clear()
     {
-        ImGui::Render();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(RGBA_NORMALIZED_FLOAT(m_color));
     }
@@ -105,17 +86,27 @@ namespace sm
         glfwSwapBuffers(m_context);
     }
 
+    void window::window_size_callback(GLFWwindow* window, int width, int height)
+    {
+        sm::window* w = (sm::window*)glfwGetWindowUserPointer(window);
+        w->set_resolution(width, height);
+
+        glViewport(0.0f, width, 0.0f, -height);
+    }
+
     window::~window()
     {
         utilz::logger::log("Closing window\n");
 
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplGlfw_Shutdown();
-        ImGui::DestroyContext();
-
         glfwDestroyWindow(m_context);
         glfwSetWindowShouldClose(m_context, GLFW_TRUE);
         glfwTerminate();
+    }
+
+    void window::set_resolution(int32_t width, int32_t height)
+    { 
+        m_width = width;
+        m_height = height;
     }
 
     GLFWwindow* window::get_context()
@@ -125,5 +116,8 @@ namespace sm
     { return m_color; }
 
     utilz::vector2 window::get_resolution()
-    { return utilz::vector2(m_width, m_height); } 
+    { return utilz::vector2(m_width, m_height); }
+
+    utilz::vector2f window::get_center()
+    { return utilz::vector2f(m_width * 0.5f, m_height * 0.5f); }
 }

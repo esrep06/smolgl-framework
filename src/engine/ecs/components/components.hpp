@@ -8,9 +8,14 @@
 #include "../../shader/shader.hpp"
 #include "../../texture/texture.hpp"
 
+/* ----- COMPONENTS ----- */
+
 #define TRANSFORM 1
 #define SPRITE 2
 #define TEXTURED_SPRITE 4
+#define BEHAVIOR 8
+
+/* ----- SPRUTE CONFIG ----- */ 
 
 #define SPRITE_CONFIG_CENTERED 1
 #define SPRITE_CONFIG_TOP_LEFT 2
@@ -68,6 +73,17 @@ namespace sm
         uint32_t indices[6];
         uint8_t was_initialized;
         uint8_t config;
+    };
+
+    struct behavior 
+    {
+        std::function<void(behavior*)> start = nullptr;
+        std::function<void(behavior*)> update = nullptr;
+
+        void* data;
+
+        uint16_t entity;
+        int8_t was_initialized;
     };
 }
 
