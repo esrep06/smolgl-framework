@@ -6,6 +6,7 @@
 #include <random>
 
 #define ASTEROID_TEXTURE_MAX 4
+#define ASTEROID_MAX_NUM 30
 
 std::random_device dev;
 std::mt19937 rng(dev());
@@ -145,7 +146,7 @@ void world_populate(struct world* world, sm::scene* scene)
     world->player = player_create(scene);
     world->scene = scene;
 
-    for (int32_t i = 0; i < 10; i++)
+    for (int32_t i = 0; i < ASTEROID_MAX_NUM; i++)
     {
         std::uniform_int_distribution<std::mt19937::result_type> x_pos(32, scene->get_window()->get_resolution().x - 32);
         std::uniform_int_distribution<std::mt19937::result_type> y_pos(32, scene->get_window()->get_resolution().y - 32);
@@ -267,6 +268,10 @@ int main(void)
 
         sp->shader->use();
         scene.get_camera()->send_matrices(sp->shader, "projection", "view");
+        sp->shader->send_float(sm::time::get_time(), "time");
+        sm::transform* player_t = (sm::transform*)scene.get_ecs()->get_component(world.player.id, TRANSFORM);
+        sp->shader->send_float(player_t->position.x, "player_x");
+        sp->shader->send_float(player_t->position.y, "player_y");
         sp->shader->send_float(sm::time::get_time(), "time");
         sp->shader->detach();
     
