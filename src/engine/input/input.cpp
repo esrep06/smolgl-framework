@@ -103,6 +103,12 @@ namespace sm
     input::CURSOR_STATE input::get_cursor_state()
     { return m_cursor_state; }
 
+    input::CURSOR_FOCUS_STATE input::get_cursor_hover_state(GLFWwindow* window)
+    {
+        if (glfwGetWindowAttrib(window, GLFW_HOVERED)) return CURSOR_FOCUSED;    
+        else return input::CURSOR_OUT_OF_FOCUS;
+    }
+
     utilz::vector2f input::get_mouse_position() 
     { return m_mouse_position; }
 

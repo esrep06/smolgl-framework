@@ -24,6 +24,12 @@ namespace sm
                 CURSOR_ENABLED,
             };
 
+            enum CURSOR_FOCUS_STATE
+            {
+                CURSOR_FOCUSED,
+                CURSOR_OUT_OF_FOCUS,
+            };
+
             static void end_frame();
 
             // Keyboard functions
@@ -47,6 +53,7 @@ namespace sm
 
             static void switch_cursor_state(CURSOR_STATE state, GLFWwindow* window);
             static CURSOR_STATE get_cursor_state();
+            static CURSOR_FOCUS_STATE get_cursor_hover_state(GLFWwindow* window);
         private:
             static uint8_t m_keys_pressed[KEY_NUMBER];
             static uint8_t m_keys_held[KEY_NUMBER];

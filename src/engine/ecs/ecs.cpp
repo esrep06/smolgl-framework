@@ -1,6 +1,7 @@
 #include "ecs.hpp"
 #include "components/components.hpp"
 #include "cpp-utilz/logger/logger.hpp"
+#include "systems/animator_system/animator_system.hpp"
 #include "systems/transform_system/transform_system.hpp"
 #include <cstddef>
 
@@ -86,7 +87,13 @@ namespace sm
             {
                 utilz::logger::log("    Removing behavior...\n");
                 m_behavior_system.remove_entity(e);
-            }   
+            }  
+
+            if (m_animator_system.has_entity(e))
+            {
+                utilz::logger::log("    Removing animator...\n");
+                m_animator_system.remove_entity(e);
+            }
 
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
           
@@ -115,6 +122,9 @@ namespace sm
 
         if (c & BEHAVIOR)
             return m_behavior_system.get_component(e);
+
+        if (c & ANIMATOR)
+            return m_animator_system.get_component(e);
         
         utilz::logger::log(std::format("Error retrieving component: entity '{}'\n", e), utilz::logger::ERROR);
 
@@ -145,6 +155,9 @@ namespace sm
 
         if (components & BEHAVIOR)
             m_behavior_system.add_entity(e); 
+
+        if (components & ANIMATOR) 
+            m_animator_system.add_entity(e);
     }
 
     uint8_t ecs::get_entity_components(entity e)
@@ -159,6 +172,8 @@ namespace sm
             components |= TEXTURED_SPRITE;
         if (m_behavior_system.has_entity(e))
             components |= BEHAVIOR;
+        if (m_animator_system.has_entity(e))
+            components |= ANIMATOR;
 
         return components;
     }
@@ -190,5 +205,8 @@ namespace sm
 
     behavior_system* ecs::get_behavior_system()
     { return &m_behavior_system; }
+
+    animator_system* ecs::get_animator_system()
+    { return &m_animator_system; }
 }
 

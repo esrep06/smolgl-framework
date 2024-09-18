@@ -2,11 +2,14 @@
 
 #include "../../../../include/cpp-utilz/math/vector2.hpp"
 #include "../../../../include/cpp-utilz/math/vector3.hpp"
+#include "../../../../include/cpp-utilz/math/m_utilz.hpp"
 
 #include "../../gl/gl_layer.hpp"
 #include "cpp-utilz/color/color.hpp"
 #include "../../shader/shader.hpp"
 #include "../../texture/texture.hpp"
+#include "../../utils/time/time.hpp"
+#include <endian.h>
 
 /* ----- COMPONENTS ----- */
 
@@ -14,6 +17,7 @@
 #define SPRITE 2
 #define TEXTURED_SPRITE 4
 #define BEHAVIOR 8
+#define ANIMATOR 16
 
 /* ----- SPRUTE CONFIG ----- */ 
 
@@ -84,6 +88,25 @@ namespace sm
 
         uint16_t entity;
         int8_t was_initialized;
+    };
+
+    struct animation 
+    {
+        sm::time::timer switch_timer;
+        int32_t x;
+        int32_t w;
+        int32_t x_bound;
+        std::string name;
+        sm::texture* texture;
+    };
+
+    struct animator
+    {
+        std::vector<animation> animations;
+
+        sm::time::timer animation_timer;
+
+        animation* current_animation = nullptr;
     };
 }
 

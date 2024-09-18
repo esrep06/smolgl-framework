@@ -31,6 +31,7 @@ namespace sm
             utilz::vector2f get_center();
 
             void set_resolution(int32_t width, int32_t height);
+            void set_color(utilz::rgba_color color);
         private:
             GLFWwindow* m_context;
 

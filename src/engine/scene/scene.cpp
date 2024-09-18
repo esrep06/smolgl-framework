@@ -5,29 +5,22 @@ namespace sm
     scene::scene(window* win, camera cam)
         : m_camera(cam), m_ecs(ecs()), m_window(win)
     {
+        // Compile our default shaders
         m_default_shaders.add_shader("assets/shaders/default_vertex.glsl", "assets/shaders/default_fragment.glsl", "default_shader");
         m_default_shaders.add_shader("assets/shaders/default_textured_vertex.glsl", "assets/shaders/default_textured_fragment.glsl", "default_textured_shader");
-    }
-
-    void scene::init()
-    {
-        /* m_ecs.get_sprite_system()->initialize_all(); */
     }
 
     void scene::new_frame()
     {
         time::calculate_update();
         glfwPollEvents();
-        /* imgui_layer::new_frame(); */
     }
 
 
     void scene::render()
     {
-        /* editor_scene::render_editor(get_ecs()); */
+        m_camera.bounds = m_window->get_resolution();
 
-        // We render our imgu frame then clear the screen
-        /* imgui_layer::render_frame(); */
         m_window->clear(); 
 
         // Delete all entities marked for deletion before starting new render frame 
@@ -36,11 +29,9 @@ namespace sm
         // Update camera matrices
         m_camera.update();
 
-        // Send camera matrices to all shaders
+        // Send camera matrices to shaders 
         shader* default_shader = m_default_shaders.retrieve_shader("default_shader");
         shader* default_texture_shader = m_default_shaders.retrieve_shader("default_textured_shader");
-
-        // Send camera matrices to shaders 
         m_camera.send_matrices(default_shader, "projection", "view");
         m_camera.send_matrices(default_texture_shader, "projection", "view");
 
@@ -97,12 +88,16 @@ namespace sm
 
             if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
                 default_texture_shader->detach();
+
+            // If the texture sprite has an animator 
+            
+            if (m_ecs.get_animator_system()->has_entity(it->first))
+                m_ecs.get_animator_system()->update_animation(it->first, &it->second);
         }
     }
 
     void scene::end_frame()
     {
-        /* imgui_layer::end_frame(); */
         m_window->swap_buffers();
         m_ecs.clear_remove_queue();
         input::end_frame();

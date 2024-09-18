@@ -12,7 +12,7 @@ namespace sm
 
         stbi_set_flip_vertically_on_load(1);	
 
-        uint8_t* m_data = stbi_load(m_path.c_str(), &m_width, &m_height, &m_channels, 0);
+        m_data = stbi_load(m_path.c_str(), &m_width, &m_height, &m_channels, 0);
 
         if (!m_data)
         {
@@ -52,7 +52,7 @@ namespace sm
         }
 
         // We can free the texture data, wont be using it anymore
-        delete m_data;
+        /* delete m_data; */
 
         utilz::logger::log("Texture loaded sucessfully!\n", utilz::logger::SUCCESS);
 
@@ -80,6 +80,9 @@ namespace sm
 
     int32_t texture::get_channels()
     { return m_channels; }
+
+    uint8_t* texture::get_data() 
+    { return m_data; }
 
     void texture::free()
     {

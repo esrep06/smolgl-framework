@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "cpp-utilz/color/color.hpp"
 #include "cpp-utilz/math/vector2.hpp"
 #include "glfw/include/GLFW/glfw3.h"
 
@@ -107,6 +108,11 @@ namespace sm
     { 
         m_width = width;
         m_height = height;
+    }
+
+    void window::set_color(utilz::rgba_color color)
+    {
+        m_color = color;
     }
 
     GLFWwindow* window::get_context()

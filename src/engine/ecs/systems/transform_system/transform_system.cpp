@@ -16,8 +16,13 @@ namespace sm
             utilz::logger::log(std::format("Entity '{}' already exists in transform system\n", e), utilz::logger::WARNING);
             return;
         }
+
+        transform default_transform = {
+            .position = utilz::vector2f(0.0f, 0.0f),
+            .scale = utilz::vector2f(32.0f)
+        };
         
-        m_entities.insert(std::pair<uint16_t, transform>(e, transform()));
+        m_entities.insert(std::pair<uint16_t, transform>(e, default_transform));
     }
 
     void transform_system::remove_entity(uint16_t e)

@@ -12,6 +12,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/main.cpp"
@@ -33,69 +34,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
-      "-o",
-      "build/app",
-      "src/examples/archer/player/player.cpp"
-    ],
-    "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework",
-    "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/examples/archer/player/player.cpp",
-    "output": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/build/app"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-std=c++20",
-      "-g",
-      "-Iinclude",
-      "-O0",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "include/glew/lib/libGLEW.a",
-      "include/glfw/build/src/libglfw3.a",
-      "-o",
-      "build/app",
-      "src/examples/archer/world/world.cpp"
-    ],
-    "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework",
-    "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/examples/archer/world/world.cpp",
-    "output": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/build/app"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-std=c++20",
-      "-g",
-      "-Iinclude",
-      "-O0",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "include/glew/lib/libGLEW.a",
-      "include/glfw/build/src/libglfw3.a",
-      "-o",
-      "build/app",
-      "src/examples/archer/world/game_map.cpp"
-    ],
-    "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework",
-    "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/examples/archer/world/game_map.cpp",
-    "output": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/build/app"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-std=c++20",
-      "-g",
-      "-Iinclude",
-      "-O0",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "include/glew/lib/libGLEW.a",
-      "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/ecs/ecs.cpp"
@@ -117,6 +56,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/ecs/systems/transform_system/transform_system.cpp"
@@ -138,6 +78,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/ecs/systems/textured_sprite_system/textured_sprite_system.cpp"
@@ -159,6 +100,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/ecs/systems/sprite_system/sprite_system.cpp"
@@ -180,6 +122,29 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
+      "-o",
+      "build/app",
+      "src/engine/ecs/systems/behavior_system/behavior_system.cpp"
+    ],
+    "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework",
+    "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/ecs/systems/behavior_system/behavior_system.cpp",
+    "output": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/build/app"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++20",
+      "-g",
+      "-Iinclude",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-pedantic",
+      "include/glew/lib/libGLEW.a",
+      "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/shader_pool/shader_pool.cpp"
@@ -201,6 +166,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/texture_pool/texture_pool.cpp"
@@ -222,6 +188,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/window/window.cpp"
@@ -243,6 +210,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/gl/gl_layer.cpp"
@@ -264,6 +232,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/scene/scene.cpp"
@@ -285,6 +254,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/math/vector2f.cpp"
@@ -306,6 +276,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/texture/texture.cpp"
@@ -327,6 +298,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/camera/camera.cpp"
@@ -348,6 +320,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/utils/time/time.cpp"
@@ -369,6 +342,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/utils/stb_impl.cpp"
@@ -390,6 +364,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/input/input.cpp"
@@ -411,6 +386,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/shader/shader.cpp"
@@ -432,6 +408,7 @@
       "-pedantic",
       "include/glew/lib/libGLEW.a",
       "include/glfw/build/src/libglfw3.a",
+      "-I/usr/include/freetype2",
       "-o",
       "build/app",
       "src/engine/physics/rect.cpp"

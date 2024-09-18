@@ -17,7 +17,6 @@ namespace sm
             scene(window* win, camera cam);
             ~scene();
 
-            void init();
             void new_frame();
             void render();
             void end_frame();
