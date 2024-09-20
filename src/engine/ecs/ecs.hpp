@@ -2,12 +2,10 @@
 
 #include <vector>
 #include <queue>
-#include <bitset>
-
-#include "../../../include/cpp-utilz/logger/logger.hpp"
 
 #include "components/components.hpp"
 #include "systems/behavior_system/behavior_system.hpp"
+#include "systems/physics_system/physics_system.hpp"
 #include "systems/transform_system/transform_system.hpp"
 #include "systems/sprite_system/sprite_system.hpp"
 #include "systems/textured_sprite_system/textured_sprite_system.hpp"
@@ -18,6 +16,7 @@
 #define ECS_GET_TRANSFORM(ecs, e) (sm::transform*)ecs->get_component(e, TRANSFORM)  
 #define ECS_GET_SPRITE(ecs, e) (sm::sprite*)ecs->get_component(e, SPRITE)  
 #define ECS_GET_TEXTURED_SPRITE(ecs, e) (sm::textured_sprite*)ecs->get_component(e, TEXTURED_SPRITE)
+#define ECS_GET_PHYSICS_BODY(ecs, e) (sm::physics_body*)ecs->get_component(e, PHYSICS_BODY)
 
 namespace sm 
 {
@@ -45,6 +44,7 @@ namespace sm
             textured_sprite_system* get_textured_sprite_system();
             behavior_system* get_behavior_system();
             animator_system* get_animator_system();
+            physics_system* get_physics_system();
 
             void clear_remove_queue();
 
@@ -59,6 +59,7 @@ namespace sm
             textured_sprite_system m_textured_sprite_system;
             behavior_system m_behavior_system;
             animator_system m_animator_system;
+            physics_system m_physics_system;
     };
 }
 

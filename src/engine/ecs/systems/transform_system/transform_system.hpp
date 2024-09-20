@@ -1,18 +1,8 @@
 #pragma once 
 
-#include "../../../../../include/glm/glm/glm.hpp"
-#include "../../../../../include/glm/glm/gtc/matrix_transform.hpp"
-#include "../../../../../include/glm/glm/gtc/type_ptr.hpp"
-
-#include "../../../../../include/cpp-utilz/math/vector2.hpp"
-#include "../../../../../include/cpp-utilz/logger/logger.hpp"
-
-
-#include "../../../shader/shader.hpp"
 #include "../../components/components.hpp"
 
 #include <map>
-#include <format>
 
 namespace sm
 {

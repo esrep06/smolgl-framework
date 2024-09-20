@@ -2,8 +2,10 @@
 #include "components/components.hpp"
 #include "cpp-utilz/logger/logger.hpp"
 #include "systems/animator_system/animator_system.hpp"
+#include "systems/physics_system/physics_system.hpp"
 #include "systems/transform_system/transform_system.hpp"
-#include <cstddef>
+
+#include <bitset>
 
 namespace sm
 {
@@ -95,6 +97,12 @@ namespace sm
                 m_animator_system.remove_entity(e);
             }
 
+            if (m_physics_system.has_entity(e)) 
+            {
+                utilz::logger::log("    Removing physics body...\n");
+                m_physics_system.remove_entity(e);
+            }
+
             auto it = std::find(m_entities.begin(), m_entities.end(), e);
           
             // Erase the entity from the entity vector 
@@ -125,6 +133,9 @@ namespace sm
 
         if (c & ANIMATOR)
             return m_animator_system.get_component(e);
+
+        if (c & PHYSICS_BODY)
+            return m_physics_system.get_component(e);
         
         utilz::logger::log(std::format("Error retrieving component: entity '{}'\n", e), utilz::logger::ERROR);
 
@@ -158,6 +169,9 @@ namespace sm
 
         if (components & ANIMATOR) 
             m_animator_system.add_entity(e);
+
+        if (components & PHYSICS_BODY) 
+            m_physics_system.add_entity(e);
     }
 
     uint8_t ecs::get_entity_components(entity e)
@@ -174,6 +188,8 @@ namespace sm
             components |= BEHAVIOR;
         if (m_animator_system.has_entity(e))
             components |= ANIMATOR;
+        if (m_physics_system.has_entity(e))
+            components |= PHYSICS_BODY;
 
         return components;
     }
@@ -208,5 +224,8 @@ namespace sm
 
     animator_system* ecs::get_animator_system()
     { return &m_animator_system; }
+
+    physics_system* ecs::get_physics_system() 
+    { return &m_physics_system; }
 }
 

@@ -14,6 +14,18 @@ namespace sm
     {
         time::calculate_update();
         glfwPollEvents();
+
+        // Delete all entities marked for deletion before starting new frame 
+        m_ecs.clear_remove_queue();
+    }
+
+    void scene::new_physics_frame() 
+    {
+        for (auto it = m_ecs.get_physics_system()->get_entities()->begin(); it != m_ecs.get_physics_system()->get_entities()->end(); it++) 
+        {
+            if (m_ecs.get_transform_system()->has_entity(it->first))
+                m_ecs.get_physics_system()->update_physics(m_ecs.get_transform_system()->get_component(it->first), it->first);    
+        }
     }
 
 
@@ -23,8 +35,6 @@ namespace sm
 
         m_window->clear(); 
 
-        // Delete all entities marked for deletion before starting new render frame 
-        m_ecs.clear_remove_queue();
 
         // Update camera matrices
         m_camera.update();
@@ -41,6 +51,8 @@ namespace sm
                 m_ecs.get_behavior_system()->start(it->first);
             m_ecs.get_behavior_system()->update(it->first);            
         }
+
+
 
         for (auto it = m_ecs.get_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_sprite_system()->get_entities()->end(); it++)
         {

@@ -2,7 +2,8 @@
 
 #include "../../../../include/cpp-utilz/math/vector2.hpp"
 #include "../../../../include/cpp-utilz/math/vector3.hpp"
-#include "../../../../include/cpp-utilz/math/m_utilz.hpp"
+
+#include "../../physics/aabb.hpp"
 
 #include "../../gl/gl_layer.hpp"
 #include "cpp-utilz/color/color.hpp"
@@ -18,6 +19,7 @@
 #define TEXTURED_SPRITE 4
 #define BEHAVIOR 8
 #define ANIMATOR 16
+#define PHYSICS_BODY 32
 
 /* ----- SPRUTE CONFIG ----- */ 
 
@@ -107,6 +109,29 @@ namespace sm
         sm::time::timer animation_timer;
 
         animation* current_animation = nullptr;
+    };
+
+    enum PHYSICS_BODY_TYPE 
+    { 
+        BODY_STATIC,
+        BODY_DYNAMIC,
+    };
+
+    struct physics_body 
+    {
+        utilz::vector2f velocity;
+
+        sm::physics::aabb horizontal_aabb;
+        sm::physics::aabb vertical_aabb;
+        sm::physics::aabb aabb;
+        sm::physics::aabb ground_check;
+
+        sm::physics::collision vertical_collision;
+        sm::physics::collision horizontal_collision;
+
+        uint8_t grounded;
+
+        PHYSICS_BODY_TYPE body_type;
     };
 }
 
