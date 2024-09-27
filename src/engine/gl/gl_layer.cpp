@@ -21,6 +21,9 @@ namespace sm
         void vbo::send_data(GLsizeiptr size, const void* data, GLenum usage)
         { glBufferData(GL_ARRAY_BUFFER, size, data, usage); }
 
+        void vbo::update_data(GLintptr offset, GLsizeiptr size, const void* data) 
+        { glBufferSubData(GL_ARRAY_BUFFER, offset, size, data); }
+
         void vbo::free()
         { glDeleteBuffers(1, &id); }
 
@@ -73,6 +76,9 @@ namespace sm
 
         void draw_indexed(GLenum mode, GLsizei count, GLenum type, const void* indices)
         { glDrawElements(mode, count, type, indices); }
+
+        void draw_simple(GLenum mode, GLint first, GLsizei count)
+        { glDrawArrays(mode, first, count); }
     }
 }
 

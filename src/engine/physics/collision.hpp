@@ -6,7 +6,8 @@
 namespace sm {
     namespace physics {
 
-        enum COLLISION_SIDE {
+        enum COLLISION_SIDE 
+        {
             COLLISION_LEFT, 
             COLLISION_RIGHT, 
             COLLISION_TOP,
@@ -14,10 +15,16 @@ namespace sm {
             COLLISION_NONE
         };
 
-        struct collision {
+        struct collision 
+        {
             uint8_t hit;
             utilz::vector2f collision_depth;
             COLLISION_SIDE side;
+        };
+
+        struct dynamic_collision 
+        {
+            uint8_t hit;
         };
     }
 }

@@ -1,5 +1,4 @@
 #include "behavior_system.hpp"
-#include <cstdint>
 
 namespace sm
 {
@@ -15,6 +14,8 @@ namespace sm
         }
         
         m_entities.insert(std::pair<uint16_t, behavior>(e, behavior()));
+
+        get_component(e)->entity = e;
     }
 
     void behavior_system::remove_entity(uint16_t e)

@@ -1,8 +1,11 @@
 #pragma once 
 
 #include "../../components/components.hpp"
-#include "../../../../../include/glew/include/GL/glew.h"
-#include "../../../../../include/cpp-utilz/logger/logger.hpp"
+
+#define GLEW_STATIC
+#include <glew/include/GL/glew.h>
+
+#include "cpp-utilz/logger/logger.hpp"
 
 #include <map>
 #include <format>

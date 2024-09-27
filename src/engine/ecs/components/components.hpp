@@ -1,16 +1,15 @@
 #pragma once 
 
-#include "../../../../include/cpp-utilz/math/vector2.hpp"
-#include "../../../../include/cpp-utilz/math/vector3.hpp"
+#include "cpp-utilz/math/vector2.hpp"
+#include "cpp-utilz/math/vector3.hpp"
+#include "cpp-utilz/color/color.hpp"
 
 #include "../../physics/aabb.hpp"
 
 #include "../../gl/gl_layer.hpp"
-#include "cpp-utilz/color/color.hpp"
 #include "../../shader/shader.hpp"
 #include "../../texture/texture.hpp"
 #include "../../utils/time/time.hpp"
-#include <endian.h>
 
 /* ----- COMPONENTS ----- */
 
@@ -121,15 +120,15 @@ namespace sm
     {
         utilz::vector2f velocity;
 
-        sm::physics::aabb horizontal_aabb;
-        sm::physics::aabb vertical_aabb;
         sm::physics::aabb aabb;
-        sm::physics::aabb ground_check;
+        sm::physics::dynamic_collision dynamic_collision;
 
-        sm::physics::collision vertical_collision;
-        sm::physics::collision horizontal_collision;
+        uint8_t custom; // To set custom scales on the hitboxes
 
         uint8_t grounded;
+
+        uint8_t collision_layer;
+        uint8_t collision_mask;
 
         PHYSICS_BODY_TYPE body_type;
     };

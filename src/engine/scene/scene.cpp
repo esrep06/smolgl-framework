@@ -17,14 +17,24 @@ namespace sm
 
         // Delete all entities marked for deletion before starting new frame 
         m_ecs.clear_remove_queue();
+
+        m_window->clear(); 
     }
 
     void scene::new_physics_frame() 
     {
-        for (auto it = m_ecs.get_physics_system()->get_entities()->begin(); it != m_ecs.get_physics_system()->get_entities()->end(); it++) 
+        sm::physics_system* physics_system = m_ecs.get_physics_system();
+        sm::transform_system* transform_system = m_ecs.get_transform_system();
+
+        if (m_tick_timer >= PHYSICS_TICK)
         {
-            if (m_ecs.get_transform_system()->has_entity(it->first))
-                m_ecs.get_physics_system()->update_physics(m_ecs.get_transform_system()->get_component(it->first), it->first);    
+            for (auto it = physics_system->get_entities()->begin(); it != physics_system->get_entities()->end(); it++) 
+            {
+                if (transform_system->has_entity(it->first))
+                    physics_system->update_physics(transform_system->get_component(it->first), it->first);    
+            }
+
+            m_tick_timer = 0;
         }
     }
 
@@ -32,8 +42,6 @@ namespace sm
     void scene::render()
     {
         m_camera.bounds = m_window->get_resolution();
-
-        m_window->clear(); 
 
 
         // Update camera matrices
@@ -45,66 +53,73 @@ namespace sm
         m_camera.send_matrices(default_shader, "projection", "view");
         m_camera.send_matrices(default_texture_shader, "projection", "view");
 
-        for (auto it = m_ecs.get_behavior_system()->get_entities()->begin(); it != m_ecs.get_behavior_system()->get_entities()->end(); it++)
+        sm::behavior_system* behavior_system = m_ecs.get_behavior_system();
+        sm::transform_system* transform_system = m_ecs.get_transform_system();
+        sm::sprite_system* sprite_system = m_ecs.get_sprite_system();
+        sm::textured_sprite_system* textured_sprite_system = m_ecs.get_textured_sprite_system();
+        sm::animator_system* animator_system = m_ecs.get_animator_system();
+
+        for (auto it = behavior_system->get_entities()->begin(); it != behavior_system->get_entities()->end(); it++)
         {
-            if (!it->second.was_initialized)
-                m_ecs.get_behavior_system()->start(it->first);
-            m_ecs.get_behavior_system()->update(it->first);            
+            behavior_system->start(it->first);
+            behavior_system->update(it->first);            
         }
 
-
-
-        for (auto it = m_ecs.get_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_sprite_system()->get_entities()->end(); it++)
+        for (auto it = sprite_system->get_entities()->begin(); it !=  sprite_system->get_entities()->end(); it++)
         {
             // Update entity transforms and send to shaders
             if (it->second.shader != nullptr)
-                m_ecs.get_transform_system()->update_transform(it->second.shader, it->first);
+                transform_system->update_transform(it->second.shader, it->first);
             else 
             {
-                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("default_shader"), it->first);
+                transform_system->update_transform(m_default_shaders.retrieve_shader("default_shader"), it->first);
                 it->second.shader = m_default_shaders.retrieve_shader("default_shader");
             }
 
             // Initialize if it hasnt 
             if (!it->second.was_initialized)
-                m_ecs.get_sprite_system()->initialize(it->first);
+                sprite_system->initialize(it->first);
 
-            if (m_ecs.get_sprite_system()->get_component(it->first)->shader == nullptr)
+            if (sprite_system->get_component(it->first)->shader == nullptr)
                 default_shader->use();
+            else
+                sprite_system->get_component(it->first)->shader->use();
 
-            m_ecs.get_sprite_system()->draw(it->first);
+            sprite_system->draw(it->first);
 
-            if (m_ecs.get_sprite_system()->get_component(it->first)->shader == nullptr)
+            if (sprite_system->get_component(it->first)->shader == nullptr)
                 default_shader->detach();
+            else 
+                sprite_system->get_component(it->first)->shader->detach();
         }
 
-        for (auto it = m_ecs.get_textured_sprite_system()->get_entities()->begin(); it !=  m_ecs.get_textured_sprite_system()->get_entities()->end(); it++)
+        for (auto it = textured_sprite_system->get_entities()->begin(); it !=  textured_sprite_system->get_entities()->end(); it++)
         {
             // Update entity transforms and send to shaders
             if (it->second.shader != nullptr)
-                m_ecs.get_transform_system()->update_transform(it->second.shader, it->first);
+                transform_system->update_transform(it->second.shader, it->first);
             else 
             {
-                m_ecs.get_transform_system()->update_transform(m_default_shaders.retrieve_shader("default_textured_shader"), it->first);
+                transform_system->update_transform(m_default_shaders.retrieve_shader("default_textured_shader"), it->first);
                 it->second.shader = m_default_shaders.retrieve_shader("default_textured_shader");
             }
 
             // Initialize if it hasnt 
             if (!it->second.was_initialized)
-                m_ecs.get_textured_sprite_system()->initialize(it->first);
+                textured_sprite_system->initialize(it->first);
 
-            if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
+            if  (textured_sprite_system->get_component(it->first)->shader == nullptr)
                 default_texture_shader->use();
 
-            m_ecs.get_textured_sprite_system()->draw(it->first);
+            textured_sprite_system->draw(it->first);
 
-            if (m_ecs.get_textured_sprite_system()->get_component(it->first)->shader == nullptr)
+            if  (textured_sprite_system->get_component(it->first)->shader == nullptr)
                 default_texture_shader->detach();
 
             // If the texture sprite has an animator 
-            
-            if (m_ecs.get_animator_system()->has_entity(it->first))
-                m_ecs.get_animator_system()->update_animation(it->first, &it->second);
+
+            if (animator_system->has_entity(it->first))
+                animator_system->update_animation(it->first, &it->second);
         }
     }
 
@@ -113,6 +128,8 @@ namespace sm
         m_window->swap_buffers();
         m_ecs.clear_remove_queue();
         input::end_frame();
+        fps = 1.0 / (double)sm::time::delta_time();
+        m_tick_timer += sm::time::delta_time();
     }
 
     scene::~scene()
@@ -132,5 +149,8 @@ namespace sm
 
     window* scene::get_window()
     { return m_window; }
+
+    double scene::get_fps() 
+    { return fps; } 
 }
 

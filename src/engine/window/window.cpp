@@ -1,7 +1,4 @@
 #include "window.hpp"
-#include "cpp-utilz/color/color.hpp"
-#include "cpp-utilz/math/vector2.hpp"
-#include "glfw/include/GLFW/glfw3.h"
 
 namespace sm
 {
@@ -17,16 +14,18 @@ namespace sm
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
         glfwWindowHint(GLFW_DOUBLEBUFFER, GL_TRUE);
         glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
 
 #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_TRUE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-        const char* glsl_version = "#version 150";
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 #else
-        const char* glsl_version = "#version 130";
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
 #endif
 
         m_context = glfwCreateWindow(m_width, m_height, m_title.c_str(), NULL, NULL);
@@ -69,8 +68,12 @@ namespace sm
 
         const GLubyte* vendor = glGetString(GL_VENDOR); // Returns the vendor
         const GLubyte* renderer = glGetString(GL_RENDERER); // Returns a hint to the model
+        const GLubyte* version = glGetString(GL_VERSION);                                            
 
-        utilz::logger::log("Renderer Info:\n    Vendor: " + std::string(reinterpret_cast<const char*>(vendor)) + "\n    Renderer: " + std::string(reinterpret_cast<const char*>(renderer)) + "\n");
+        utilz::logger::log("Renderer Info:\n    Vendor: " + 
+                std::string(reinterpret_cast<const char*>(vendor)) + "\n    Renderer: " + 
+                std::string(reinterpret_cast<const char*>(renderer)) + "\n    Version: " + 
+                std::string(reinterpret_cast<const char*>(version)) + '\n');
     }
 
     window::window()
@@ -127,3 +130,4 @@ namespace sm
     utilz::vector2f window::get_center()
     { return utilz::vector2f(m_width * 0.5f, m_height * 0.5f); }
 }
+

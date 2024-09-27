@@ -25,6 +25,7 @@ namespace sm
             case GLFW_PRESS:
                 m_keys_pressed[key] = 1;
                 m_keys_held[key] = 1;
+                m_last_key = key;
 
                 if (key == GLFW_KEY_ESCAPE) 
                 {
@@ -52,6 +53,9 @@ namespace sm
 
     uint8_t input::get_input_stream()
     { return input::m_input_stream; }
+
+    uint32_t input::get_last_key() 
+    { return input::m_last_key; }
 
 
     // Mouse Functions
@@ -114,6 +118,7 @@ namespace sm
 
     uint8_t input::m_keys_pressed[KEY_NUMBER];
     uint8_t input::m_keys_held[KEY_NUMBER];
+    uint32_t input::m_last_key;
     uint8_t input::m_buttons_pressed[MOUSE_BUTTON_NUMBER];
     uint8_t input::m_buttons_held[MOUSE_BUTTON_NUMBER];
     uint8_t input::m_buttons_released[MOUSE_BUTTON_NUMBER];

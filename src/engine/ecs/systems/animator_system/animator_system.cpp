@@ -1,7 +1,4 @@
 #include "animator_system.hpp"
-#include "cpp-utilz/logger/logger.hpp"
-#include "cpp-utilz/math/vector2.hpp"
-#include <locale>
 
 namespace sm
 {

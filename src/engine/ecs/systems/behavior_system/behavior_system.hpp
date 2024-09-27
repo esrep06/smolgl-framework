@@ -1,8 +1,8 @@
 #pragma once 
 
 #include "../../components/components.hpp"
-#include "../../../../../include/cpp-utilz/math/vector2.hpp"
-#include "../../../../../include/cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/math/vector2.hpp"
+#include "cpp-utilz/logger/logger.hpp"
 
 #include <map>
 #include <format>

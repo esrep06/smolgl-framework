@@ -1,17 +1,18 @@
 #pragma once 
 
 #include <inttypes.h>
-#include <iostream>
 #include <fstream>
 
-#include "../../../include/cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/logger/logger.hpp"
+
+#define GLEW_STATIC
+#include <glew/include/GL/glew.h>
 
 #define GLFW_INCLUDE_NONE
-#include "../../../include/glew/include/GL/glew.h"
-#include "../../../include/glfw/include/GLFW/glfw3.h"
+#include <glfw/include/GLFW/glfw3.h>
 
-#include "../../../include/glm/glm/glm.hpp"
-#include "../../../include/glm/glm/gtc/type_ptr.hpp"
+#include "glm/glm/glm.hpp"
+#include "glm/glm/gtc/type_ptr.hpp"
 
 namespace sm
 {

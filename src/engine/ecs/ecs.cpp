@@ -1,11 +1,4 @@
 #include "ecs.hpp"
-#include "components/components.hpp"
-#include "cpp-utilz/logger/logger.hpp"
-#include "systems/animator_system/animator_system.hpp"
-#include "systems/physics_system/physics_system.hpp"
-#include "systems/transform_system/transform_system.hpp"
-
-#include <bitset>
 
 namespace sm
 {
@@ -165,7 +158,9 @@ namespace sm
         }
 
         if (components & BEHAVIOR)
+        {
             m_behavior_system.add_entity(e); 
+        }
 
         if (components & ANIMATOR) 
             m_animator_system.add_entity(e);

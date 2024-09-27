@@ -2,7 +2,7 @@
 
 #pragma once 
 
-#include "../../../../../include/cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/logger/logger.hpp"
 #include "../../../texture/texture.hpp"
 #include "../../components/components.hpp"
 

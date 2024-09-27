@@ -1,7 +1,9 @@
 #pragma once 
 
 #include "../../components/components.hpp"
+#include "../../../shader/shader.hpp"
 
+#include <format>
 #include <map>
 
 namespace sm

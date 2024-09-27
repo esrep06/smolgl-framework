@@ -2,11 +2,11 @@
 
 #include <string> 
 
-#include "../../../include/stb_image/stb_image.h"
-#include "../../../include/stb_image/stb_image_write.h"
-#include "../../../include/stb_image/stb_image_resize.h"
-#include "../../../include/glew/include/GL/glew.h"
-#include "../../../include/cpp-utilz/logger/logger.hpp"
+#define GLEW_STATIC
+#include <glew/include/GL/glew.h>
+
+#include "stb_image/stb_image.h"
+#include "cpp-utilz/logger/logger.hpp"
 
 namespace sm 
 {

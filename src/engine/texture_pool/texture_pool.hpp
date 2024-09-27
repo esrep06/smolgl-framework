@@ -1,7 +1,7 @@
 #pragma once
 
 #include <map>
-#include "../../../include/cpp-utilz/logger/logger.hpp"
+#include "cpp-utilz/logger/logger.hpp"
 
 #include "../texture/texture.hpp"
 

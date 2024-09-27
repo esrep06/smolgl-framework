@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <queue>
+#include <bitset>
 
 #include "components/components.hpp"
 #include "systems/behavior_system/behavior_system.hpp"
@@ -17,6 +18,7 @@
 #define ECS_GET_SPRITE(ecs, e) (sm::sprite*)ecs->get_component(e, SPRITE)  
 #define ECS_GET_TEXTURED_SPRITE(ecs, e) (sm::textured_sprite*)ecs->get_component(e, TEXTURED_SPRITE)
 #define ECS_GET_PHYSICS_BODY(ecs, e) (sm::physics_body*)ecs->get_component(e, PHYSICS_BODY)
+#define ECS_GET_BEHAVIOR(ecs, e) (sm::behavior*)ecs->get_component(e, BEHAVIOR)
 
 namespace sm 
 {

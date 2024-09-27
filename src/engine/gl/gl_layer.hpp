@@ -6,9 +6,9 @@
 #pragma once 
 
 #include <inttypes.h>
-#include <iostream>
 
-#include "../../../include/glew/include/GL/glew.h"
+#define GLEW_STATIC
+#include <glew/include/GL/glew.h>
 
 namespace sm 
 {
@@ -36,6 +36,7 @@ namespace sm
             void bind();
             void detach();
             void send_data(GLsizeiptr size, const void* data, GLenum usage);
+            void update_data(GLintptr offset, GLsizeiptr size, const void* data);
             void free();
         };
 
@@ -57,6 +58,7 @@ namespace sm
         void disable_attrib_array(GLint index);
 
         void draw_indexed(GLenum mode, GLsizei count, GLenum type, const void* indices);
+        void draw_simple(GLenum mode, GLint first, GLsizei count);
     };
 }
 

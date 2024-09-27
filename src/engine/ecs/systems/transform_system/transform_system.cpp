@@ -1,14 +1,4 @@
 #include "transform_system.hpp"
-#include "cpp-utilz/logger/logger.hpp"
-#include "cpp-utilz/math/vector2.hpp"
-#include "glm/glm/ext/matrix_transform.hpp"
-#include "glm/glm/trigonometric.hpp"
-#include "../../../shader/shader.hpp"
-
-#include "../../../../../include/cpp-utilz/math/vector2.hpp"
-#include "../../../../../include/cpp-utilz/logger/logger.hpp"
-
-#include <format>
 
 namespace sm
 {

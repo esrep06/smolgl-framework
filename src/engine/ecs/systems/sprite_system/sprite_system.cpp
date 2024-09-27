@@ -1,6 +1,4 @@
 #include "sprite_system.hpp"
-#include "cpp-utilz/color/color.hpp"
-#include "cpp-utilz/math/vector3.hpp"
 
 namespace sm 
 {
@@ -116,8 +114,6 @@ namespace sm
             return;
         }
 
-        spr->shader->use();
-
         spr->vbo.bind();
         spr->vao.bind();
         spr->ebo.bind();
@@ -133,8 +129,6 @@ namespace sm
         spr->vbo.detach();
         spr->vao.detach();
         spr->ebo.detach();
-
-        spr->shader->detach();
     }
 
     void sprite_system::update_color(sprite* spr)
