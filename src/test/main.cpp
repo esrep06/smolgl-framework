@@ -1,11 +1,12 @@
 #include "engine/scene/scene.hpp"
+#include "engine/utils/file.hpp"
 #include "cpp-utilz/math/m_utilz.hpp"
 
 #include <unistd.h>
 
 int main(void)
 {
-    chdir("../../../");
+    sm::file_util::set_working_dir("../../../");
 
     sm::window win = sm::window("Engine Window", 1600, 1200,
             utilz::rgba_color(RGBA_WHITE));
