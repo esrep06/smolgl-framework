@@ -6,9 +6,9 @@ namespace sm
     uint8_t file_util::set_working_dir(std::string path)
     {
         uint8_t res = 0;
-#if defined(__unix__) || defined(__APPLE)
+#if defined(__unix__) || defined(__APPLE__)
         res = chdir(path.c_str());
-
+        
         if (res != 0) 
             utilz::logger::log(std::format("Failed to set working directory to: {}", path), utilz::logger::ERROR);
 

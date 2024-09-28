@@ -4,7 +4,7 @@
 #include <windows.h>
 #endif
 
-#if defined(__unix__) || defined(__APPLE)
+#if defined(__unix__) || defined(__APPLE__)
 #include <unistd.h>
 #endif
 

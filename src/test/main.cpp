@@ -16,7 +16,7 @@ int main(void)
 
     utilz::m_utilz math_utils = utilz::m_utilz();
 
-    scene.get_shader_pool()->add_shader("assets/shaders/line_vertex.glsl", "assets/shaders/line_fragment.glsl", "line_shader");
+    /* scene.get_shader_pool()->add_shader("assets/shaders/line_vertex.glsl", "assets/shaders/line_fragment.glsl", "line_shader"); */
 
     while (!glfwWindowShouldClose(win.get_context()))
     {
