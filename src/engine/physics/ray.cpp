@@ -7,7 +7,7 @@ namespace sm
 {
     namespace physics
     {
-        void shoot_ray(struct ray ray, sm::scene* scene, ray_hit& hit)
+        void shoot_ray(struct ray ray, sm::scene* scene, ray_hit& hit, uint8_t mask)
         {
             sm::physics_system* system = scene->get_ecs()->get_physics_system();
 
@@ -66,16 +66,22 @@ namespace sm
                 if (tMax < 0 || tMin > tMax) 
                     continue;
 
-                if (tMin < closestT)
+
+                if (tMin < closestT && mask)
                 {
-                    closestT = tMin;
+                    uint8_t entity_layer = scene->get_ecs()->get_physics_system()->get_component(it->first)->collision_layer;
 
-                    hit.point.x = ray.origin.x + tMin * ray.direction.x;
-                    hit.point.y = ray.origin.y + tMin * ray.direction.y;
-                    hit.dist = hit.point.eu_dist(ray.origin);
-                    hit.e = it->first;
+                    if (entity_layer & mask)
+                    {
+                        closestT = tMin;
 
-                    hit_found = 1;
+                        hit.point.x = ray.origin.x + tMin * ray.direction.x;
+                        hit.point.y = ray.origin.y + tMin * ray.direction.y;
+                        hit.dist = hit.point.eu_dist(ray.origin);
+                        hit.entity = it->first;
+
+                        hit_found = 1;
+                    }
                 }
             }
             
@@ -84,7 +90,7 @@ namespace sm
                 hit.point.x = std::numeric_limits<float>::infinity();
                 hit.point.y = std::numeric_limits<float>::infinity();
                 hit.dist = 0.0f;
-                hit.e = 0;
+                hit.entity = 0;
             }
 
             return;

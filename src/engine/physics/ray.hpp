@@ -13,7 +13,7 @@ namespace sm
         {
             utilz::vector2f point;
             float dist;
-            sm::entity e;
+            sm::entity entity;
         };
 
         struct ray 
@@ -24,7 +24,7 @@ namespace sm
             float distance;
         };
 
-        void shoot_ray(struct ray ray, sm::scene* scene, ray_hit& hit);
+        void shoot_ray(struct ray ray, sm::scene* scene, ray_hit& hit, uint8_t mask);
     }
 }
 
