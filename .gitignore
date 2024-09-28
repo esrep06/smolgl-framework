@@ -2,3 +2,7 @@ run.sh
 .DS_Store
 build/app
 build/app.dSYM
+build/*
+src/engine/.cache
+src/test/.cache
+.cache
