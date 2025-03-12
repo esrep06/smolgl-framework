@@ -6,5 +6,6 @@ set(EXTERNAL_INCLUDES "${PROJECT_SOURCE_DIR}/include")
 set(EXTERNAL_LIBRARIES "${PROJECT_SOURCE_DIR}/lib")
 
 add_subdirectory("src/engine")
-add_subdirectory(src/test)
+# add_subdirectory(src/test)
+add_subdirectory(src/game_of_life)
 

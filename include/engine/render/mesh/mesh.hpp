@@ -18,8 +18,8 @@ namespace sm
         class mesh
         {
             public:
-                void init(GLenum mode);
-                void render(GLenum mode, GLint first, GLsizei count);
+                void init();
+                void render();
                 void free();
 
                 sm::gl_layer::vao* get_vao();
@@ -30,8 +30,6 @@ namespace sm
 
                 void allocate_vertices(size_t vertex_num);
                 void update_mesh();
-
-                uint8_t was_initialized();
             private: 
                 sm::gl_layer::vao m_vao;
                 sm::gl_layer::vbo m_vbo;
@@ -39,7 +37,6 @@ namespace sm
                 vertex* m_vertices;
 
                 size_t m_vertex_num = 0; 
-                uint8_t m_was_initialized = 0;
         };
     }
 }

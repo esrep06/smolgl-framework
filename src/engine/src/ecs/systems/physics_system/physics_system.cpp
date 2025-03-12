@@ -1,4 +1,5 @@
 #include "engine/ecs/systems/physics_system/physics_system.hpp"
+#include "engine/ecs/components/components.hpp"
 
 namespace sm
 {
@@ -40,7 +41,6 @@ namespace sm
 
     void physics_system::update_physics(sm::transform* t, uint16_t e)
     {
-
         physics_body* body = get_component(e);
 
         sm::physics::aabb horizontal_aabb;
@@ -106,7 +106,8 @@ namespace sm
 
             // Gets collisions between dynamic objects, these dont stop movement, just register a hit
 
-            if (target_body->body_type == BODY_DYNAMIC && body->body_type == BODY_DYNAMIC)                 
+            if (target_body->body_type == BODY_DYNAMIC && body->body_type == BODY_KINEMATIC || 
+                    body->body_type == BODY_DYNAMIC || target_body->body_type == BODY_KINEMATIC)                 
             {
                 sm::physics::dynamic_collision collision = body->aabb.dynamic_dynamic_collision_aabb(target_body->aabb);
 
@@ -120,11 +121,11 @@ namespace sm
             }
         }
 
-
-        if (body->body_type == BODY_DYNAMIC) {
+        if (body->body_type != BODY_STATIC) {
             t->position.x += body->velocity.x;
             t->position.y += body->velocity.y;
         }
+
     }
 
     // TODO: Fix this 

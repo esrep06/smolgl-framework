@@ -114,6 +114,7 @@ namespace sm
     { 
         BODY_STATIC,
         BODY_DYNAMIC,
+        BODY_KINEMATIC,
     };
 
     struct physics_body 

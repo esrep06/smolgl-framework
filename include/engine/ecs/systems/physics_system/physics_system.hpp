@@ -7,6 +7,8 @@
 
 #define WORLD_GRAVITY 8000
 
+#define PHYSICS_TICK 1.0f / 120.0f
+
 namespace sm
 {
     class physics_system
@@ -27,10 +29,8 @@ namespace sm
             uint8_t has_entity(uint16_t e);
 
             std::map<uint16_t, physics_body>* get_entities();
-
         private:
             std::map<uint16_t, physics_body> m_entities;
-            float m_tick_timer = 0.0f;
     };
 }
 

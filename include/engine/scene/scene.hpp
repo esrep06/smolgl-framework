@@ -6,8 +6,6 @@
 #include "engine/texture_pool/texture_pool.hpp"
 #include "engine/window/window.hpp"
 
-#define PHYSICS_TICK 1.0f / 60.0f
-
 namespace sm
 {
     class scene
@@ -41,9 +39,8 @@ namespace sm
 
             sm::window* m_window;
 
-            double m_tick_timer = 0.0;
-
             double fps;
+            double m_tick_timer = 0.0;
     };
 }
 

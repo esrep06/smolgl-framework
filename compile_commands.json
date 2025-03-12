@@ -1,0 +1,164 @@
+[
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/camera/camera.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/camera/camera.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/camera/camera.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/camera/camera.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/ecs.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/ecs.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/ecs.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/ecs.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/animator_system/animator_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/animator_system/animator_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/animator_system/animator_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/animator_system/animator_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/behavior_system/behavior_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/behavior_system/behavior_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/behavior_system/behavior_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/behavior_system/behavior_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/physics_system/physics_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/physics_system/physics_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/physics_system/physics_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/physics_system/physics_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/sprite_system/sprite_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/sprite_system/sprite_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/sprite_system/sprite_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/sprite_system/sprite_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/textured_sprite_system/textured_sprite_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/textured_sprite_system/textured_sprite_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/textured_sprite_system/textured_sprite_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/textured_sprite_system/textured_sprite_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/ecs/systems/transform_system/transform_system.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/transform_system/transform_system.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/ecs/systems/transform_system/transform_system.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/ecs/systems/transform_system/transform_system.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/gl/gl_layer.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/gl/gl_layer.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/gl/gl_layer.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/gl/gl_layer.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/input/input.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/input/input.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/input/input.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/input/input.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/physics/aabb.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/aabb.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/aabb.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/physics/aabb.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/physics/collision.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/collision.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/collision.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/physics/collision.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/physics/ray.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/ray.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/physics/ray.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/physics/ray.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/render/mesh/mesh.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh/mesh.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh/mesh.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/render/mesh/mesh.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/render/mesh_types/line.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh_types/line.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh_types/line.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/render/mesh_types/line.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/render/mesh_types/simple_batch.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh_types/simple_batch.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/render/mesh_types/simple_batch.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/render/mesh_types/simple_batch.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/scene/scene.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/scene/scene.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/scene/scene.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/scene/scene.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/shader/shader.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/shader/shader.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/shader/shader.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/shader/shader.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/shader_pool/shader_pool.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/shader_pool/shader_pool.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/shader_pool/shader_pool.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/shader_pool/shader_pool.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/texture/texture.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/texture/texture.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/texture/texture.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/texture/texture.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/texture_pool/texture_pool.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/texture_pool/texture_pool.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/texture_pool/texture_pool.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/texture_pool/texture_pool.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/utils/file.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/file.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/file.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/utils/file.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/utils/stb_impl.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/stb_impl.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/stb_impl.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/utils/stb_impl.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/utils/time/time.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/time/time.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/utils/time/time.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/utils/time/time.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine",
+  "command": "/usr/bin/c++ -DGLEW_STATIC -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Engine.dir/src/window/window.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/window/window.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/src/window/window.cpp",
+  "output": "src/engine/CMakeFiles/Engine.dir/src/window/window.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life",
+  "command": "/usr/bin/c++  -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Game_Of_Life.dir/main.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/main.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/main.cpp",
+  "output": "src/game_of_life/CMakeFiles/Game_Of_Life.dir/main.cpp.o"
+},
+{
+  "directory": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life",
+  "command": "/usr/bin/c++  -I/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/include -std=gnu++20 -o CMakeFiles/Game_Of_Life.dir/world/world.cpp.o -c /home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/world/world.cpp",
+  "file": "/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/world/world.cpp",
+  "output": "src/game_of_life/CMakeFiles/Game_Of_Life.dir/world/world.cpp.o"
+}
+]

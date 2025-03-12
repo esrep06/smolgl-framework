@@ -62,6 +62,9 @@ namespace sm
          void ebo::send_data(GLsizeiptr size, const void* data, GLenum usage)
         { glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage); }
 
+         void ebo::update_data(GLintptr offset, GLsizeiptr size, const void* data)
+         { glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, size, data); }
+
         void ebo::free()
         { glDeleteBuffers(1, &id); }
 

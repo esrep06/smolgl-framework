@@ -1,0 +1,8 @@
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/CMakeFiles/edit_cache.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/CMakeFiles/rebuild_cache.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/CMakeFiles/Engine.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/CMakeFiles/edit_cache.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/engine/CMakeFiles/rebuild_cache.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/CMakeFiles/Game_Of_Life.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/CMakeFiles/edit_cache.dir
+/home/esrep06/Desktop/Coding/cpp-coding/smolgl-framework/src/game_of_life/CMakeFiles/rebuild_cache.dir

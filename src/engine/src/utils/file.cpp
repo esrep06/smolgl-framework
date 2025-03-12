@@ -16,7 +16,7 @@ namespace sm
         res = SetCurrentDirectory(path);
 
         if (res == 0) 
-            utilz::logger::log(std::format("Failed to set working directory to: {}", path), utilz::logger::ERROR);
+            utilz::logger::log(std::format("Failed to set working directory to: {}", path.c_str()), utilz::logger::ERROR);
 #endif
 
         return 0;

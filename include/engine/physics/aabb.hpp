@@ -5,7 +5,6 @@
 
 #define PHYSICS_LAYER_STATIC 1
 #define PHYSICS_LAYER_DYNAMIC 2
-#define PHYSICS_LAYER_ENEMY 4
 
 namespace sm 
 {

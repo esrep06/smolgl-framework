@@ -50,6 +50,7 @@ namespace sm
             void bind();
             void detach();
             void send_data(GLsizeiptr size, const void* data, GLenum usage);
+            void update_data(GLintptr offset, GLsizeiptr size, const void* data);
             void free();
         };
         
