@@ -23,7 +23,7 @@ namespace sm
     class font
     {
         public:
-            font(std::string path, uint32_t height);
+            font(sm::shader* shader, std::string path, uint32_t height);
 
             struct character 
             {
@@ -36,12 +36,15 @@ namespace sm
             std::map<char, character> characters;
             
             void load_characters();
-            void render_text(shader* shader, glm::mat4 projection, std::string text, float x, float y, float scale, utilz::rgba_color color);
+            void render_text(std::string text, float x, float y, float scale, utilz::rgba_color color);
+
+            utilz::vector2f get_text_size(std::string text, float scale);
         private: 
             std::string m_font_path;
             sm::gl_layer::vao m_vao;
             sm::gl_layer::vbo m_vbo;
             int32_t m_ascent = 0;
+            sm::shader* m_shader;
     };
 }
 

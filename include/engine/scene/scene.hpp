@@ -4,6 +4,7 @@
 #include "engine/ecs/ecs.hpp"
 #include "engine/shader_pool/shader_pool.hpp"
 #include "engine/texture_pool/texture_pool.hpp"
+#include "engine/font_pool/font_pool.hpp"
 #include "engine/window/window.hpp"
 
 namespace sm
@@ -25,6 +26,7 @@ namespace sm
 
             shader_pool* get_shader_pool();
             texture_pool* get_texture_pool();
+            font_pool* get_font_pool();
 
             sm::window* get_window();
 
@@ -36,6 +38,7 @@ namespace sm
 
             shader_pool m_default_shaders;
             texture_pool m_textures;
+            font_pool m_default_fonts;
 
             sm::window* m_window;
 

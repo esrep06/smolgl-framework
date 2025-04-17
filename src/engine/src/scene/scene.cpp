@@ -15,6 +15,9 @@
                     "assets/shaders/line_fragment.glsl", "line_shader");
             m_default_shaders.add_shader("assets/shaders/font_vertex.glsl", 
                     "assets/shaders/font_fragment.glsl", "font_shader");
+            
+            m_default_fonts.add_font(m_default_shaders.retrieve_shader("font_shader"), "assets/fonts/atari.ttf", 16.0f, "atari");
+            m_default_fonts.add_font(m_default_shaders.retrieve_shader("font_shader"), "assets/fonts/RobotoMono-Regular.ttf", 16.0f, "roboto");
         }
 
         void scene::new_frame()
@@ -56,9 +59,11 @@
             shader* default_shader = m_default_shaders.retrieve_shader("default_shader");
             shader* default_texture_shader = m_default_shaders.retrieve_shader("default_textured_shader");
             shader* line_shader = m_default_shaders.retrieve_shader("line_shader");
+            shader* font_shader = m_default_shaders.retrieve_shader("font_shader");
 
             m_camera.send_matrices(default_shader, "projection", "view");
             m_camera.send_matrices(default_texture_shader, "projection", "view");
+            font_shader->send_mat4(m_camera.get_proj(), "projection");
 
             sm::behavior_system* behavior_system = m_ecs.get_behavior_system();
             sm::transform_system* transform_system = m_ecs.get_transform_system();
@@ -153,6 +158,9 @@
 
     texture_pool* scene::get_texture_pool()
     { return &m_textures; }
+
+    font_pool* scene::get_font_pool()
+    { return &m_default_fonts; }
 
     window* scene::get_window()
     { return m_window; }

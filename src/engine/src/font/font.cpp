@@ -10,7 +10,7 @@ namespace sm
     FT_Library m_ft;
     FT_Face m_face;
 
-    font::font(std::string path, uint32_t height)
+    font::font(sm::shader* shader, std::string path, uint32_t height)
     {
         if (FT_Init_FreeType(&m_ft))
         {
@@ -42,6 +42,10 @@ namespace sm
         
         m_vbo.detach();
         m_vao.detach();
+
+        m_shader = shader;
+
+        load_characters();
     }
 
     void font::load_characters()
@@ -86,34 +90,37 @@ namespace sm
             characters.insert({c, character});
         }
 
+        glBindTexture(GL_TEXTURE_2D, 0);
+
         FT_Done_Face(m_face);
         FT_Done_FreeType(m_ft);
     }
 
-    void font::render_text(shader* shader, glm::mat4 projection, std::string text, float x, float y, float scale, utilz::rgba_color color)
+    void font::render_text(std::string text, float x, float y, float scale, utilz::rgba_color color)
     {
-        shader->send_vec3((float)color.r / 255.0f, (float)color.g / 255.0f, (float)color.b / 255.0f, "textColor");
-        shader->send_mat4(projection, "projection");
-        shader->use();
+        m_shader->send_vec3((float)color.r / 255.0f, (float)color.g / 255.0f, (float)color.b / 255.0f, "textColor");
+        m_shader->use();
         // activate corresponding render state	
         glActiveTexture(GL_TEXTURE0);
         m_vao.bind();
-
 
         float baseline_y = y + m_ascent * scale;
 
         // iterate through all characters
         std::string::const_iterator c;
+
         for (c = text.begin(); c != text.end(); c++)
         {
             character ch = characters[*c];
 
-
-            float xpos = x + ch.bearing.x * scale;
+            float xpos = (x + ch.bearing.x * scale);
             float ypos = baseline_y - ch.bearing.y * scale;
 
             float w = ch.size.x * scale;
             float h = ch.size.y * scale;
+
+            // if (alignment == ALIGNMENT_CENTER)
+            //     xpos -= (ch.advance >> 6) * 3; 
 
             // update VBO for each character
             float vertices[6][4] = {
@@ -141,9 +148,24 @@ namespace sm
             x += (ch.advance >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64)
             sm::gl_layer::disable_attrib_array(0);
         }
-        shader->detach();
+        m_vbo.detach();
+        m_shader->detach();
         m_vao.detach();
         glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
+    utilz::vector2f font::get_text_size(std::string text, float scale)
+    {
+        float width = 0.0f;
+        float height = 0.0f;
+        for (char c : text) {
+            character ch = characters[c];
+            width += (ch.advance >> 6) * scale;
+            float h = ch.size.y * scale;
+            if (h > height) height = h;
+        }
+
+        return utilz::vector2f(width, height);
     }
 }
 
