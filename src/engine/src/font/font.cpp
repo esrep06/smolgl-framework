@@ -85,7 +85,7 @@ namespace sm
                 texture, 
                 glm::ivec2(m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows),
                 glm::ivec2(m_face->glyph->bitmap_left, m_face->glyph->bitmap_top),
-                m_face->glyph->advance.x
+                static_cast<unsigned int>(m_face->glyph->advance.x)
             };
             characters.insert({c, character});
         }
