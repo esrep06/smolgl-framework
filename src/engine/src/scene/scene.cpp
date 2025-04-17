@@ -11,6 +11,10 @@
                     "assets/shaders/default_fragment.glsl", "default_shader");
             m_default_shaders.add_shader("assets/shaders/default_textured_vertex.glsl", 
                     "assets/shaders/default_textured_fragment.glsl", "default_textured_shader");
+            m_default_shaders.add_shader("assets/shaders/line_vertex.glsl", 
+                    "assets/shaders/line_fragment.glsl", "line_shader");
+            m_default_shaders.add_shader("assets/shaders/font_vertex.glsl", 
+                    "assets/shaders/font_fragment.glsl", "font_shader");
         }
 
         void scene::new_frame()
@@ -51,6 +55,8 @@
             // Send camera matrices to shaders 
             shader* default_shader = m_default_shaders.retrieve_shader("default_shader");
             shader* default_texture_shader = m_default_shaders.retrieve_shader("default_textured_shader");
+            shader* line_shader = m_default_shaders.retrieve_shader("line_shader");
+
             m_camera.send_matrices(default_shader, "projection", "view");
             m_camera.send_matrices(default_texture_shader, "projection", "view");
 

@@ -64,6 +64,7 @@ namespace sm
 
         input::switch_cursor_state(input::CURSOR_ENABLED, m_context);
 
+
         utilz::logger::log("Window created successfully!\n", utilz::logger::SUCCESS);
 
         const GLubyte* vendor = glGetString(GL_VENDOR); // Returns the vendor

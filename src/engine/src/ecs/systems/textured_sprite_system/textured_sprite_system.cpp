@@ -63,10 +63,10 @@ namespace sm
             spr->vertices[3].position = utilz::vector3f(0.5f, 0.5f, 1.0f);
         }
 
-        spr->vertices[0].uv = utilz::vector2f(0.0f, 1.0f);
-        spr->vertices[1].uv = utilz::vector2f(1.0f, 1.0f);
-        spr->vertices[2].uv = utilz::vector2f(0.0f, 0.0f);
-        spr->vertices[3].uv = utilz::vector2f(1.0f, 0.0f);
+        spr->vertices[0].uv = utilz::vector2f(0.0f, 1.0f); // x, y
+        spr->vertices[1].uv = utilz::vector2f(1.0f, 1.0f); // x + w, y
+        spr->vertices[2].uv = utilz::vector2f(0.0f, 0.0f); // x, y + h
+        spr->vertices[3].uv = utilz::vector2f(1.0f, 0.0f); // x + w, y + h
 
         spr->indices[0] = 0;
         spr->indices[1] = 1;

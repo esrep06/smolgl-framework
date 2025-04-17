@@ -31,6 +31,7 @@ namespace sm
             void send_float(float val, std::string varName);
             void send_mat4(glm::mat4 mat, std::string name);
             void send_int(int32_t val, std::string name);
+            void send_vec3(float x, float y, float z, std::string name);
 
             void free();
         private:

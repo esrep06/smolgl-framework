@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Game_Of_Life.dir/link.d CMakeFiles/Game_Of_Life.dir/main.cpp.o CMakeFiles/Game_Of_Life.dir/world/world.cpp.o -o Game_Of_Life  ../engine/libEngine.a ../../lib/linux/libGLEW.a ../../lib/linux/libglfw3.a -lGL
