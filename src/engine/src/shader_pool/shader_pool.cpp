@@ -5,13 +5,15 @@ namespace sm
 {
     shader_pool::shader_pool() {}
 
-    void shader_pool::add_shader(std::string vertex, std::string fragment, std::string identifier)
+    sm::shader* shader_pool::add_shader(std::string vertex, std::string fragment, std::string identifier)
     {
-        if (m_pool.find(identifier) != m_pool.end()) return;
+        if (m_pool.find(identifier) != m_pool.end()) return NULL;
 
         m_pool.insert(std::pair<std::string, shader>(identifier, shader(vertex, fragment)));
 
         m_pool.at(identifier).load_and_compile();
+
+        return retrieve_shader(identifier);
     }
 
     shader* shader_pool::retrieve_shader(std::string identifier)

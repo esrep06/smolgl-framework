@@ -128,6 +128,13 @@ namespace sm
 		detach();
 	}
 
+    void shader::send_vec2(float x, float y, std::string name)
+    {
+        use();
+        glUniform2f(glGetUniformLocation(m_id, name.c_str()), x, y);
+        detach();
+    }
+
     void shader::send_vec3(float x, float y, float z, std::string name)
     {
         use();

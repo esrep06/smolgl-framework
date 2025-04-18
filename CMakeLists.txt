@@ -8,4 +8,5 @@ set(EXTERNAL_LIBRARIES "${PROJECT_SOURCE_DIR}/lib")
 add_subdirectory("src/engine")
 add_subdirectory(src/virus_io)
 add_subdirectory(src/test)
+add_subdirectory(src/battleship)
 

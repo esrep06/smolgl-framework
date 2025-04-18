@@ -12,7 +12,7 @@ namespace sm
         public:
             shader_pool();
 
-            void add_shader(std::string vertex, std::string fragment, std::string identifier);
+            sm::shader* add_shader(std::string vertex, std::string fragment, std::string identifier);
             void initialize_shaders();
 
             shader* retrieve_shader(std::string identifier);
