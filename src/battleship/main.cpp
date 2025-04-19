@@ -4,7 +4,9 @@
 #include "cpp-utilz/math/m_utilz.hpp"
 #include "engine/font/font.hpp"
 
-#include "board/board.hpp"
+#include "game/game.hpp"
+
+// #include "board/board.hpp"
 
 int main(void)
 {
@@ -17,16 +19,18 @@ int main(void)
                 utilz::vector2(win.get_resolution().x, win.get_resolution().y)));
 
     utilz::m_utilz math_utils = utilz::m_utilz();
+    
+    game main_game = game(1);
+    main_game.add_player(&scene);
 
-    board b = board(&scene);
-   
     while (!glfwWindowShouldClose(win.get_context()))
     {
         scene.new_frame();
         scene.new_physics_frame();
 
-        b.update(&scene);
         scene.render();
+
+        main_game.update(&scene);
 
         scene.get_font_pool()->retrieve_font("atari")->render_text(std::format("FPS: {}", (int)scene.get_fps()), 0.0f, 0.0f, 0.8f, utilz::rgba_color(0, 200, 0, 255));
         scene.end_frame();

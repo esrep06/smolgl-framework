@@ -8,29 +8,19 @@
 
 #include <vector>
 
+#include "../board/board.hpp"
+
 class player 
 {
     public:
-        enum ORIENTATION
-        {
-            LEFT, 
-            RIGHT, 
-            UP, 
-            DOWN,
-        };
-
-        struct segment
-        {
-            sm::entity id;
-        };
-
-        player(sm::scene* scene, int32_t segments, utilz::vector2 origin, ORIENTATION orientation);
-
-        void destroy_segment(int32_t location);
-        void kill();
+        player();
+        player(sm::scene* scene, uint8_t game_id, uint8_t id);
+        void update(sm::scene* scene);
+        void place_boat(boat b);
     private: 
-        std::vector<segment> m_segments;
-        ORIENTATION m_orientation;
-        utilz::vector2 m_origin;
+        board m_board;
+        std::vector<boat> m_boats;
+        uint8_t m_game_id;
+        uint8_t m_id;
 };
 

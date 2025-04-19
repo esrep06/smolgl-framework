@@ -28,8 +28,7 @@ class boat
             sm::entity id;
         };
 
-        boat(sm::scene* scene, int32_t segments, 
-                utilz::vector2 origin, ORIENTATION orientation, uint8_t player, uint8_t game);
+        boat(sm::scene* scene, int32_t segments, utilz::vector2 origin, ORIENTATION orientation);
 
         void destroy_segment(int32_t location);
         void kill();
@@ -37,15 +36,14 @@ class boat
         std::vector<segment> m_segments;
         ORIENTATION m_orientation;
         utilz::vector2 m_origin;
-        uint8_t m_player;
-        uint8_t m_game_id;
+        uint8_t m_id;
 };
 
 class board 
 {
-    public:
-        board();
+    public: 
         board(sm::scene* scene);
+        void add_boat(boat p);
         void update(sm::scene* scene);
     private: 
         int32_t m_grid_size = GRID_SIZE;
